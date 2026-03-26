@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+
+<html class="light" lang="kk"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#E53935",
+              "on-primary": "#ffffff",
+              "surface": "#ffffff",
+              "on-surface": "#191c1d",
+              "surface-container": "#f8f9fa",
+              "surface-container-low": "#f3f4f5",
+              "surface-container-lowest": "#ffffff",
+              "outline-variant": "#e1e3e4",
+              "on-surface-variant": "#5b403d"
+            },
+            fontFamily: {
+              "headline": ["Inter", "sans-serif"],
+              "body": ["Inter", "sans-serif"],
+              "label": ["Inter", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.5rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "3xl": "1.5rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        .tonal-gradient {
+            background: linear-gradient(135deg, #E53935 0%, #ff5252 100%);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen flex flex-col overflow-x-hidden">
+<main class="flex-grow flex items-center justify-center p-6 md:p-12 relative">
+<!-- Background Architectural Elements -->
+<div class="absolute top-0 right-0 w-1/3 h-screen bg-surface-container-low -z-10"></div>
+<div class="absolute bottom-10 left-10 w-64 h-64 rounded-full bg-primary/5 blur-3xl -z-10"></div>
+<div class="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+<!-- Left Column: Editorial Content (40%) -->
+<div class="lg:col-span-5 space-y-10">
+<div class="space-y-4">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 tonal-gradient rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">auto_stories</span>
+</div>
+<span class="font-headline font-black text-xl tracking-tighter text-slate-900">EduAI Platform</span>
+</div>
+<h1 class="text-5xl lg:text-7xl font-black tracking-tighter leading-[0.9] text-on-surface">
+                    Академиялық <br/>Ателье.
+                </h1>
+<p class="text-lg text-on-surface-variant max-w-sm font-medium leading-relaxed">
+                    Ғылыми зерттеулер мен шығармашылық жаңалықтардың келесі буынына арналған нақты білім беру ортасы.
+                </p>
+</div>
+<div class="grid grid-cols-1 gap-6">
+<div class="p-6 bg-surface-container-lowest rounded-3xl border border-outline-variant/30 space-y-2">
+<span class="text-[10px] uppercase tracking-widest font-bold text-primary">Ғылыми Стандарт</span>
+<p class="text-sm text-on-surface-variant">Біздің интеграцияланған AI зертханамыз арқылы 12 миллионнан астам рецензияланған дереккөздерге қол жеткізіңіз.</p>
+</div>
+</div>
+<div class="pt-8">
+<img alt="Кітапхананың заманауи интерьері" class="w-full h-48 object-cover rounded-3xl shadow-sm grayscale opacity-80 hover:grayscale-0 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAA_SXEcpeiORJKneYd4NeLZkEe13eW1hekgWxpRVpZ5dgLJUs8AlLEi2p38WWkFceoE7W3y7Ewp6gh1xFJPhq-qebQ77Qw5XGU8FcU47httsCGdm60egv8sDszBYaAlbZjJe3S3PEUUNq_k7A9VQxt_IO3XmeW3oaXJHwcgZ7E6cqpe6cL7fn7G5uwLpWKP4LuI19bfQrfRmxxk3aDNdbKsZ_dwvO-8MqZGC9TFnrkd83B-tHB0nqX6aiDXXjb4yw_aEUKp_jlBFB3"/>
+</div>
+</div>
+<!-- Right Column: Interaction Hub (60%) -->
+<div class="lg:col-span-7 bg-surface-container-lowest p-8 md:p-12 rounded-[2.5rem] shadow-[0_12px_40px_rgba(0,0,0,0.06)] border border-outline-variant/30">
+<div class="max-w-md mx-auto space-y-10">
+<div class="text-center space-y-2">
+<h2 class="text-2xl font-bold tracking-tight">Сапарыңызды бастаңыз</h2>
+<p class="text-on-surface-variant text-sm">Жалғастыру үшін академиялық рөліңізді таңдаңыз</p>
+</div>
+<!-- Role Selection Cards -->
+<div class="grid grid-cols-2 gap-4">
+<button class="group relative flex flex-col items-start p-6 rounded-2xl bg-surface-container-low hover:bg-white hover:ring-2 hover:ring-primary/20 transition-all duration-300 text-left">
+<div class="w-10 h-10 rounded-xl bg-white flex items-center justify-center text-on-surface-variant group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined">school</span>
+</div>
+<div class="mt-6">
+<span class="block font-bold text-on-surface">Студент</span>
+<span class="block text-[10px] uppercase tracking-wider text-on-surface-variant/70 mt-1">Оқу порталы</span>
+</div>
+</button>
+<button class="group relative flex flex-col items-start p-6 rounded-2xl bg-surface-container-low hover:bg-white hover:ring-2 hover:ring-primary/20 transition-all duration-300 text-left">
+<div class="w-10 h-10 rounded-xl bg-white flex items-center justify-center text-on-surface-variant group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined">psychology</span>
+</div>
+<div class="mt-6">
+<span class="block font-bold text-on-surface">Мұғалім</span>
+<span class="block text-[10px] uppercase tracking-wider text-on-surface-variant/70 mt-1">Академиялық зертхана</span>
+</div>
+</button>
+</div>
+<!-- Form Inputs -->
+<div class="space-y-4">
+<div class="space-y-1.5">
+<label class="text-[10px] uppercase tracking-widest font-black text-on-surface-variant ml-1">Институционалдық электрондық пошта</label>
+<input class="w-full h-14 px-5 bg-surface-container-low border-none rounded-2xl focus:ring-2 focus:ring-primary/20 focus:bg-white transition-all text-on-surface placeholder:text-on-surface-variant/40" placeholder="aty@university.edu" type="email"/>
+</div>
+<div class="space-y-1.5">
+<label class="text-[10px] uppercase tracking-widest font-black text-on-surface-variant ml-1">Қол жеткізу коды</label>
+<input class="w-full h-14 px-5 bg-surface-container-low border-none rounded-2xl focus:ring-2 focus:ring-primary/20 focus:bg-white transition-all text-on-surface placeholder:text-on-surface-variant/40" placeholder="••••••••" type="password"/>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="space-y-4">
+<button class="w-full h-14 tonal-gradient text-white rounded-2xl font-bold tracking-tight shadow-lg shadow-primary/20 active:scale-[0.98] transition-all flex items-center justify-center gap-2">
+                        Жүйеге кіру
+                        <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+<div class="flex items-center gap-4 py-2">
+<div class="h-[1px] flex-grow bg-outline-variant/30"></div>
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">немесе арқылы тіркелу</span>
+<div class="h-[1px] flex-grow bg-outline-variant/30"></div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<button class="h-12 flex items-center justify-center gap-2 bg-white border border-outline-variant/40 rounded-xl text-sm font-semibold hover:bg-surface-container-low transition-colors">
+<img alt="Google" class="w-4 h-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmEyWCzOdUOb5Lp6ytZMv9--JM1dolGycEWOQexyB0yucxhULWU-M-oZX39GHBbrEkzLPwbkEP8fdcy6Z4q1Cmy3M9V_qQK4YlaIOZxK2gmvmaXfM2otuZss9HFWP_u3ap6-Pt1IohDmvebgB513YQpzBAkkLw6UqGt-RdEJ4jenaWkLFcDuOff1LLuJbGb_TRMlwR0h8hlGr-syHuyk9vAQkhgu0SJmpT8wVCt4379aJKf66yfzN_UTSMTAe1xsGvBPNzh3lgNwxh"/>
+                            Google
+                        </button>
+<button class="h-12 flex items-center justify-center gap-2 bg-white border border-outline-variant/40 rounded-xl text-sm font-semibold hover:bg-surface-container-low transition-colors">
+<img alt="Microsoft" class="w-4 h-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAxOR9H92HWx7Ndi7_LW44Y5iyOUCM4MIQ9U8XqihBnrHDS4cBsuQU2D0Pv-1CBG4LiVZk-A7oxfN0v3gSPxDfcOaWuMzCOYW4JmZF1Pk6DO8VGrpj6HaWbrJFr9_Z8KGPcvzUs26vo2YlBKLGQcFvAWaHrYxoy7e0Bls-fmJaaSQQf8ULOvS8_sZ9RllMkgHnLQ-I1AiwuhWW-ITGs5vOCybahsRU7ZT52luoa6WXI2MltFqosxGoJ7jKYtYd2Z5JCpREdlbglch8"/>
+                            Microsoft
+                        </button>
+</div>
+</div>
+<div class="text-center pt-4">
+<p class="text-sm text-on-surface-variant">
+                        Платформада жаңасыз ба? <a class="text-primary font-bold hover:underline underline-offset-4" href="#">Институционалдық рұқсат сұрау</a>
+</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Simple Modern Footer -->
+<footer class="p-8 flex flex-col md:flex-row justify-between items-center text-on-surface-variant gap-4 bg-white/50 backdrop-blur-sm">
+<div class="flex gap-8 text-[10px] uppercase tracking-[0.2em] font-bold">
+<a class="hover:text-primary transition-colors" href="#">Құпиялылық хаттамасы</a>
+<a class="hover:text-primary transition-colors" href="#">Академиялық этика</a>
+<a class="hover:text-primary transition-colors" href="#">Жүйе күйі</a>
+</div>
+<div class="text-[10px] font-medium tracking-wide uppercase">
+        © 2024 EDUAI PLATFORM • НАҚТЫ ОҚЫТУ ЖҮЙЕЛЕРІ
+    </div>
+</footer>
+</body></html>

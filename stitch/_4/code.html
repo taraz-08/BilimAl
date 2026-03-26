@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+
+<html lang="kk"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "tertiary-fixed": "#afecff",
+                        "surface-container-highest": "#e1e3e4",
+                        "primary-fixed-dim": "#ffb4ac",
+                        "surface-tint": "#bb171c",
+                        "secondary-fixed": "#d7e4ec",
+                        "surface": "#f8f9fa",
+                        "surface-container-high": "#e7e8e9",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-fixed-variant": "#93000d",
+                        "on-primary-fixed": "#410002",
+                        "surface-container-low": "#f3f4f5",
+                        "inverse-primary": "#ffb4ac",
+                        "background": "#f8f9fa",
+                        "on-secondary-fixed": "#111d23",
+                        "secondary-fixed-dim": "#bbc8d0",
+                        "on-surface": "#191c1d",
+                        "primary-container": "#db322f",
+                        "on-background": "#191c1d",
+                        "outline-variant": "#e4beb9",
+                        "primary-fixed": "#ffdad6",
+                        "surface-variant": "#e1e3e4",
+                        "on-error": "#ffffff",
+                        "secondary": "#546067",
+                        "on-secondary-container": "#5a666d",
+                        "on-tertiary-container": "#f9fdff",
+                        "error": "#ba1a1a",
+                        "error-container": "#ffdad6",
+                        "secondary-container": "#d7e4ec",
+                        "surface-dim": "#d9dadb",
+                        "on-error-container": "#93000a",
+                        "on-primary": "#ffffff",
+                        "tertiary-container": "#008097",
+                        "on-primary-container": "#fffbff",
+                        "outline": "#906f6c",
+                        "tertiary-fixed-dim": "#72d4ef",
+                        "inverse-on-surface": "#f0f1f2",
+                        "on-tertiary": "#ffffff",
+                        "tertiary": "#006578",
+                        "surface-bright": "#f8f9fa",
+                        "primary": "#b7131a",
+                        "on-tertiary-fixed-variant": "#004e5d",
+                        "inverse-surface": "#2e3132",
+                        "surface-container": "#edeeef",
+                        "on-tertiary-fixed": "#001f27",
+                        "on-surface-variant": "#5b403d",
+                        "on-secondary-fixed-variant": "#3c494f",
+                        "on-secondary": "#ffffff"
+                    },
+                    fontFamily: {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1.5rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+        }
+        .text-shadow-sm {
+            text-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        }
+        .asymmetric-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 2rem;
+        }
+        @media (max-width: 1024px) {
+            .asymmetric-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 w-full z-50 glass-nav shadow-sm h-16 flex items-center justify-between px-6 border-b border-transparent">
+<div class="flex items-center gap-8">
+<span class="text-xl font-bold tracking-tighter text-slate-900">EduAI Платформасы</span>
+<div class="hidden md:flex gap-6 items-center">
+<a class="text-red-600 font-semibold border-b-2 border-red-600 text-sm py-5 px-1" href="#">Студент режимі</a>
+<a class="text-slate-500 hover:text-slate-900 transition-colors text-sm font-medium py-5 px-1" href="#">Оқытушы режимі</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-slate-50 rounded-full transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined text-slate-600">notifications</span>
+</button>
+<button class="p-2 hover:bg-slate-50 rounded-full transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined text-slate-600">settings</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-surface-container-high overflow-hidden">
+<img alt="Пайдаланушы профилі" data-alt="professional headshot of a student in a clean studio setting with soft lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKdbpvv2ThpbSo59q3s3RuV7IbWOY1CrKAUcxk1yeJKOWwVJyahV4wCD7E7YUwI8plbd4isGEEneh6X4gykw1GWnoPUvXmMlsNi2wIduntcwPVNQ0KDbW_xPYn9j0npgKus_zxQg_cPYUqpPi7EV5U9RI1G2KKkYS2L_4K_hAA0UGl5JxfJKozJS2GQOVqq11SVflezIoI9GL_W5Y-yHGonSgG_DgLNUUTNywrizXhuuLv7oIkkZM81CLT-MPHsMceXyqvvFJKJ6Cm"/>
+</div>
+</div>
+</nav>
+<!-- Side Navigation Bar -->
+<aside class="hidden md:flex flex-col gap-2 p-4 pt-20 h-screen w-64 fixed left-0 top-0 bg-slate-50 border-r border-slate-200">
+<div class="px-4 py-6 mb-4">
+<div class="flex items-center gap-3 mb-1">
+<div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">school</span>
+</div>
+<div>
+<h2 class="text-lg font-black text-slate-900 uppercase tracking-tight">Академиялық Ателье</h2>
+<p class="text-[10px] uppercase tracking-widest text-slate-500 font-medium">Дәлме-дәл оқыту</p>
+</div>
+</div>
+</div>
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-4 py-3 text-red-600 bg-white rounded-xl font-bold shadow-sm translate-x-1" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-[10px] uppercase tracking-widest">Бақылау тақтасы</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:text-red-600 hover:translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">menu_book</span>
+<span class="text-[10px] uppercase tracking-widest">Оқу жоспары</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:text-red-600 hover:translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">psychology</span>
+<span class="text-[10px] uppercase tracking-widest">AI зертханасы</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:text-red-600 hover:translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">insights</span>
+<span class="text-[10px] uppercase tracking-widest">Үлгерім</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:text-red-600 hover:translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">local_library</span>
+<span class="text-[10px] uppercase tracking-widest">Кітапхана</span>
+</a>
+</nav>
+<div class="mt-auto p-4">
+<button class="w-full bg-gradient-to-r from-primary to-primary-container text-white py-4 rounded-xl font-bold text-[10px] uppercase tracking-widest hover:scale-[1.02] transition-transform active:scale-95">
+                Жаңа зерттеу
+            </button>
+</div>
+</aside>
+<!-- Main Content Stage -->
+<main class="md:ml-64 pt-20 p-8 min-h-screen">
+<!-- Header Section -->
+<header class="mb-16 flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div class="max-w-2xl">
+<p class="text-[10px] uppercase tracking-[0.2em] text-on-surface-variant font-bold mb-3">Академиялық үлгерім индексі</p>
+<h1 class="text-5xl md:text-7xl font-extrabold tracking-tighter text-on-surface leading-none mb-6">Қош келдіңіз, <br/>Ғалым.</h1>
+<p class="text-body-lg text-on-surface-variant leading-relaxed opacity-80">Сіздің когнитивті прогресіңіз базалық деңгейден 12%-ға жоғары. Оқу траекторияңызды оңтайландыру үшін төмендегі AI негізіндегі мәліметтерді зерттеңіз.</p>
+</div>
+<div class="flex gap-4">
+<div class="bg-surface-container-low p-6 rounded-2xl flex flex-col items-center">
+<span class="text-[10px] uppercase tracking-widest font-bold text-slate-400 mb-1">Жалпы рейтинг</span>
+<span class="text-3xl font-black text-on-surface">#128</span>
+<span class="text-[10px] font-medium text-slate-500">3,450 студенттің ішінен</span>
+</div>
+</div>
+</header>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Performance Prediction Card -->
+<div class="lg:col-span-8 bg-surface-container-lowest rounded-2xl p-8 shadow-[0_12px_40px_rgba(25,28,29,0.04)] relative overflow-hidden flex flex-col gap-8">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="text-xl font-bold tracking-tight mb-1">Үлгерім болжамы</h3>
+<p class="text-sm text-on-surface-variant">Ағымдағы модульдерге қатысу негізіндегі нақты уақыт болжамы.</p>
+</div>
+<div class="flex items-center gap-2 px-3 py-1 bg-green-50 text-green-700 rounded-full">
+<span class="w-2 h-2 rounded-full bg-green-500"></span>
+<span class="text-[10px] uppercase font-bold tracking-widest">Күйі: Жақсы</span>
+</div>
+</div>
+<!-- Custom Performance Chart -->
+<div class="h-64 w-full flex items-end gap-2 relative">
+<div class="absolute inset-0 flex flex-col justify-between py-2 border-l border-slate-100">
+<div class="w-full border-t border-slate-50"></div>
+<div class="w-full border-t border-slate-50"></div>
+<div class="w-full border-t border-slate-50"></div>
+<div class="w-full border-t border-slate-50"></div>
+</div>
+<div class="flex-1 bg-surface-container-high rounded-t-lg h-[60%] transition-all hover:bg-primary-container/20"></div>
+<div class="flex-1 bg-surface-container-high rounded-t-lg h-[45%] transition-all hover:bg-primary-container/20"></div>
+<div class="flex-1 bg-surface-container-high rounded-t-lg h-[75%] transition-all hover:bg-primary-container/20"></div>
+<div class="flex-1 bg-surface-container-high rounded-t-lg h-[55%] transition-all hover:bg-primary-container/20"></div>
+<div class="flex-1 bg-surface-container-high rounded-t-lg h-[90%] transition-all hover:bg-primary-container/20"></div>
+<div class="flex-1 bg-primary rounded-t-lg h-[82%] relative group">
+<div class="absolute -top-12 left-1/2 -translate-x-1/2 bg-on-surface text-white px-3 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity">94% Болжам</div>
+</div>
+<div class="flex-1 bg-primary-container/40 rounded-t-lg h-[88%] border-2 border-dashed border-primary/30"></div>
+</div>
+<div class="flex justify-between items-center pt-4">
+<div class="flex gap-8">
+<div>
+<p class="text-[10px] uppercase tracking-widest text-slate-400 font-bold">Дәлдік</p>
+<p class="text-xl font-bold">98.2%</p>
+</div>
+<div>
+<p class="text-[10px] uppercase tracking-widest text-slate-400 font-bold">Қарқын</p>
+<p class="text-xl font-bold">+12 ұпай/апта</p>
+</div>
+</div>
+<button class="text-red-600 text-sm font-bold flex items-center gap-2 hover:underline">
+                        Толық талдау <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- AI Recommendations -->
+<div class="lg:col-span-4 flex flex-col gap-6">
+<div class="bg-surface-container-low rounded-2xl p-6 flex-1 border border-transparent hover:border-outline-variant/20 transition-all">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">psychology</span>
+<h3 class="text-sm font-bold uppercase tracking-widest">AI ұсыныстары</h3>
+</div>
+<div class="space-y-4">
+<div class="bg-white p-4 rounded-xl border-l-4 border-primary shadow-sm">
+<h4 class="text-sm font-bold mb-1">Күрделі термодинамика</h4>
+<p class="text-xs text-on-surface-variant leading-relaxed">Жүйе демалыс алдындағы емтиханға дейін 'Энтропия' модульдерін қайталауды ұсынады.</p>
+</div>
+<div class="bg-white p-4 rounded-xl border-l-4 border-slate-200 shadow-sm">
+<h4 class="text-sm font-bold mb-1">Өзара бағалау кезеңі</h4>
+<p class="text-xs text-on-surface-variant leading-relaxed">Кванттық физика бойынша соңғы жұмыста үздік студенттермен бірлесіп жұмыс жасаңыз.</p>
+</div>
+<div class="bg-white p-4 rounded-xl border-l-4 border-slate-200 shadow-sm">
+<h4 class="text-sm font-bold mb-1">Кітапхананы кеңейту</h4>
+<p class="text-xs text-on-surface-variant leading-relaxed">Есептеу гидродинамикасы бойынша жаңа ресурстар қолжетімді.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Active Curriculum Status -->
+<div class="lg:col-span-12 mt-4">
+<div class="flex items-baseline justify-between mb-8">
+<h3 class="text-3xl font-black tracking-tighter">Ағымдағы оқу үлгерімі</h3>
+<p class="text-sm text-primary font-bold">Күзгі семестр 2024</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Grade Card 1 -->
+<div class="bg-white p-6 rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.02)] flex flex-col gap-4 border border-slate-50">
+<div class="w-10 h-10 bg-surface-container-low rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-600">functions</span>
+</div>
+<div>
+<h4 class="font-bold text-slate-900">Дискретті математика</h4>
+<p class="text-[10px] uppercase tracking-widest text-slate-400 font-medium">MAT-402</p>
+</div>
+<div class="flex items-end justify-between">
+<span class="text-4xl font-black text-slate-900">A</span>
+<div class="text-right">
+<p class="text-[10px] font-bold text-green-600">Үздік 5%</p>
+<p class="text-xs text-slate-400">96/100</p>
+</div>
+</div>
+<div class="w-full h-1 bg-slate-100 rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[96%]"></div>
+</div>
+</div>
+<!-- Grade Card 2 -->
+<div class="bg-white p-6 rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.02)] flex flex-col gap-4 border border-slate-50">
+<div class="w-10 h-10 bg-surface-container-low rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-600">terminal</span>
+</div>
+<div>
+<h4 class="font-bold text-slate-900">Нейрондық архитектуралар</h4>
+<p class="text-[10px] uppercase tracking-widest text-slate-400 font-medium">CS-510</p>
+</div>
+<div class="flex items-end justify-between">
+<span class="text-4xl font-black text-slate-900">B+</span>
+<div class="text-right">
+<p class="text-[10px] font-bold text-amber-600">Нормада</p>
+<p class="text-xs text-slate-400">88/100</p>
+</div>
+</div>
+<div class="w-full h-1 bg-slate-100 rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[88%]"></div>
+</div>
+</div>
+<!-- Grade Card 3 -->
+<div class="bg-white p-6 rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.02)] flex flex-col gap-4 border border-slate-50">
+<div class="w-10 h-10 bg-surface-container-low rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-600">science</span>
+</div>
+<div>
+<h4 class="font-bold text-slate-900">Кванттық теория</h4>
+<p class="text-[10px] uppercase tracking-widest text-slate-400 font-medium">PHY-301</p>
+</div>
+<div class="flex items-end justify-between">
+<span class="text-4xl font-black text-slate-900">A-</span>
+<div class="text-right">
+<p class="text-[10px] font-bold text-green-600">Жақсаруда</p>
+<p class="text-xs text-slate-400">91/100</p>
+</div>
+</div>
+<div class="w-full h-1 bg-slate-100 rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[91%]"></div>
+</div>
+</div>
+<!-- Grade Card 4 -->
+<div class="bg-white p-6 rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.02)] flex flex-col gap-4 border border-slate-50">
+<div class="w-10 h-10 bg-surface-container-low rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-600">history_edu</span>
+</div>
+<div>
+<h4 class="font-bold text-slate-900">Когнитивті этика</h4>
+<p class="text-[10px] uppercase tracking-widest text-slate-400 font-medium">ETH-200</p>
+</div>
+<div class="flex items-end justify-between">
+<span class="text-4xl font-black text-slate-900">A+</span>
+<div class="text-right">
+<p class="text-[10px] font-bold text-green-600">Ерекшелік</p>
+<p class="text-xs text-slate-400">99/100</p>
+</div>
+</div>
+<div class="w-full h-1 bg-slate-100 rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[99%]"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Scholarly Progress Tracker -->
+<section class="mt-24 mb-12">
+<div class="max-w-4xl border-t border-slate-100 pt-12">
+<h3 class="text-[10px] uppercase tracking-[0.3em] font-black text-primary mb-12">Ғылыми жол прогресі</h3>
+<div class="relative w-full h-px bg-outline-variant/30 flex justify-between items-center">
+<!-- Point 1 -->
+<div class="relative">
+<div class="w-3 h-3 rounded-full bg-primary shadow-[0_0_10px_rgba(183,19,26,0.5)]"></div>
+<div class="absolute top-6 left-1/2 -translate-x-1/2 text-center w-32">
+<p class="text-[10px] font-bold uppercase tracking-widest text-slate-900">Іргетас</p>
+<p class="text-[9px] text-slate-400 uppercase tracking-tighter">15 тамызда аяқталды</p>
+</div>
+</div>
+<!-- Point 2 -->
+<div class="relative">
+<div class="w-3 h-3 rounded-full bg-primary shadow-[0_0_10px_rgba(183,19,26,0.5)]"></div>
+<div class="absolute top-6 left-1/2 -translate-x-1/2 text-center w-32">
+<p class="text-[10px] font-bold uppercase tracking-widest text-slate-900">Негізгі зертхана</p>
+<p class="text-[9px] text-slate-400 uppercase tracking-tighter">02 қазанда аяқталды</p>
+</div>
+</div>
+<!-- Point 3 -->
+<div class="relative">
+<div class="w-6 h-6 rounded-full border-2 border-primary bg-white flex items-center justify-center">
+<div class="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
+</div>
+<div class="absolute top-8 left-1/2 -translate-x-1/2 text-center w-32">
+<p class="text-[10px] font-bold uppercase tracking-widest text-primary">Синтез</p>
+<p class="text-[9px] text-slate-400 uppercase tracking-tighter">Орындалуда</p>
+</div>
+</div>
+<!-- Point 4 -->
+<div class="relative">
+<div class="w-3 h-3 rounded-full bg-slate-200"></div>
+<div class="absolute top-6 left-1/2 -translate-x-1/2 text-center w-32">
+<p class="text-[10px] font-bold uppercase tracking-widest text-slate-400">Қорғау</p>
+<p class="text-[9px] text-slate-400 uppercase tracking-tighter">12 желтоқсанға жоспарланған</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Contextual Floating Action Button -->
+<div class="fixed bottom-8 right-8">
+<button class="bg-primary text-white p-4 rounded-2xl shadow-2xl flex items-center gap-3 hover:scale-105 transition-transform active:scale-95 group">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">add</span>
+<span class="text-[10px] font-black uppercase tracking-widest max-w-0 overflow-hidden group-hover:max-w-xs transition-all duration-300 whitespace-nowrap">Оқу сессиясы</span>
+</button>
+</div>
+</body></html>

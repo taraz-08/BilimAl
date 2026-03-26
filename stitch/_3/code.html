@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+
+<html class="light" lang="kk"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EduAI платформасы | Мұғалімнің тест құрастырушысы</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "tertiary-fixed": "#afecff",
+                        "surface-container-highest": "#e1e3e4",
+                        "primary-fixed-dim": "#ffb4ac",
+                        "surface-tint": "#bb171c",
+                        "secondary-fixed": "#d7e4ec",
+                        "surface": "#f8f9fa",
+                        "surface-container-high": "#e7e8e9",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-fixed-variant": "#93000d",
+                        "on-primary-fixed": "#410002",
+                        "surface-container-low": "#f3f4f5",
+                        "inverse-primary": "#ffb4ac",
+                        "background": "#f8f9fa",
+                        "on-secondary-fixed": "#111d23",
+                        "secondary-fixed-dim": "#bbc8d0",
+                        "on-surface": "#191c1d",
+                        "primary-container": "#db322f",
+                        "on-background": "#191c1d",
+                        "outline-variant": "#e4beb9",
+                        "primary-fixed": "#ffdad6",
+                        "surface-variant": "#e1e3e4",
+                        "on-error": "#ffffff",
+                        "secondary": "#546067",
+                        "on-secondary-container": "#5a666d",
+                        "on-tertiary-container": "#f9fdff",
+                        "error": "#ba1a1a",
+                        "error-container": "#ffdad6",
+                        "secondary-container": "#d7e4ec",
+                        "surface-dim": "#d9dadb",
+                        "on-error-container": "#93000a",
+                        "on-primary": "#ffffff",
+                        "tertiary-container": "#008097",
+                        "on-primary-container": "#fffbff",
+                        "outline": "#906f6c",
+                        "tertiary-fixed-dim": "#72d4ef",
+                        "inverse-on-surface": "#f0f1f2",
+                        "on-tertiary": "#ffffff",
+                        "tertiary": "#006578",
+                        "surface-bright": "#f8f9fa",
+                        "primary": "#b7131a",
+                        "on-tertiary-fixed-variant": "#004e5d",
+                        "inverse-surface": "#2e3132",
+                        "surface-container": "#edeeef",
+                        "on-tertiary-fixed": "#001f27",
+                        "on-surface-variant": "#5b403d",
+                        "on-secondary-fixed-variant": "#3c494f",
+                        "on-secondary": "#ffffff"
+                    },
+                    fontFamily: {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+        }
+        .shadow-ambient {
+            box-shadow: 0 12px 40px rgba(25, 28, 29, 0.06);
+        }
+        input[type="range"] {
+            -webkit-appearance: none;
+            appearance: none;
+            background: transparent;
+            cursor: pointer;
+        }
+        input[type="range"]::-webkit-slider-runnable-track {
+            background: #e1e3e4;
+            height: 4px;
+            border-radius: 2px;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            margin-top: -6px;
+            background-color: #b7131a;
+            height: 16px;
+            width: 16px;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 glass-nav shadow-sm flex items-center justify-between px-6 h-16 w-full">
+<div class="flex items-center gap-8">
+<span class="text-xl font-bold tracking-tighter text-slate-900">EduAI платформасы</span>
+<div class="hidden md:flex gap-6 items-center">
+<a class="text-slate-500 hover:text-slate-900 transition-colors" href="#">Студент режимі</a>
+<a class="text-red-600 font-semibold border-b-2 border-red-600 transition-colors" href="#">Мұғалім режимі</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-slate-500 hover:bg-slate-50 rounded-full transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-slate-500 hover:bg-slate-50 rounded-full transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<div class="h-8 w-8 rounded-full bg-surface-container-highest overflow-hidden">
+<img alt="Пайдаланушы профилі" data-alt="заманауи кеңседегі кәсіби әйелдің портреті" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCm5NDTNqq0kD5EKLHxByCXcZO2trzRNNfaDwETvPa5F9-2J05O8bw-2Rr9CZzENdL03KfqZOo16xDUAPnj_ryN9kM1TkS_ZPi4eF0of5ZEFoqsdzHTMsK8q1CDBfMvqgCFnYY4Fg1GqkYNUCdGQq0Igm5RcyC6GnqnwKiCWuXkpe8HD_yLwocCGpxee68hyz-7cRKC2u-eA7xPg_cAxBZrueAq3-5sh2mO16CpqD8MGrWVMX3uZv57Dm1ibb-ymQ2FL5WlUEbCx_PK"/>
+</div>
+</div>
+</nav>
+<!-- SideNavBar -->
+<aside class="h-screen w-64 fixed left-0 top-0 border-r border-slate-200 bg-slate-50 pt-20 hidden lg:block">
+<div class="px-6 mb-8">
+<h2 class="text-lg font-black text-slate-900">Академиялық Ателье</h2>
+<p class="font-['Inter'] uppercase tracking-widest text-[10px] text-slate-500">Дәлдікпен оқыту</p>
+</div>
+<nav class="flex flex-col gap-2 p-4">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:text-red-600 hover:translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-medium">Басқару панелі</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-red-600 bg-white rounded-xl font-bold shadow-sm" href="#">
+<span class="material-symbols-outlined" data-icon="menu_book">menu_book</span>
+<span class="font-medium">Оқу жоспары</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:text-red-600 hover:translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="psychology">psychology</span>
+<span class="font-medium">AI зертханасы</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:text-red-600 hover:translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="insights">insights</span>
+<span class="font-medium">Нәтижелер</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:text-red-600 hover:translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="local_library">local_library</span>
+<span class="font-medium">Кітапхана</span>
+</a>
+</nav>
+<div class="absolute bottom-8 left-4 right-4">
+<button class="w-full bg-gradient-to-r from-primary to-primary-container text-white py-3 rounded-2xl font-semibold active:scale-95 transition-all shadow-md">
+            Жаңа зерттеу
+        </button>
+</div>
+</aside>
+<!-- Main Content Stage -->
+<main class="lg:ml-64 pt-24 px-6 pb-12 min-h-screen bg-surface">
+<div class="max-w-6xl mx-auto">
+<!-- Header Section -->
+<header class="mb-12">
+<span class="label-md uppercase tracking-[0.05em] text-primary font-bold text-xs">Тест генерациялау модулі</span>
+<h1 class="text-5xl font-extrabold tracking-tight text-on-surface mt-2 mb-4">Тест құрастырушы</h1>
+<p class="text-lg text-on-surface-variant max-w-2xl leading-relaxed">
+                Оқу жоспарыңыздың негізінде күрделі бағалауларды жасау үшін заманауи нейрондық синтезді қолданыңыз. Академиялық тұтастық үшін дәл бапталған.
+            </p>
+</header>
+<!-- Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Left Column: AI Config -->
+<div class="lg:col-span-8 space-y-8">
+<!-- AI Generation Section -->
+<section class="bg-surface-container-lowest rounded-2xl p-8 shadow-ambient">
+<div class="flex items-center gap-3 mb-8">
+<span class="material-symbols-outlined text-primary" data-icon="auto_awesome">auto_awesome</span>
+<h3 class="text-xl font-bold tracking-tight">AI тест генерациясы</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="space-y-2">
+<label class="block text-xs font-bold uppercase tracking-wider text-on-surface-variant">Бағалау атауы</label>
+<input class="w-full bg-surface-container-low border-none rounded-xl py-3 px-4 focus:ring-1 focus:ring-primary/20 focus:bg-white transition-all outline-none" placeholder="мысалы: Кванттық механика аралық бақылау" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="block text-xs font-bold uppercase tracking-wider text-on-surface-variant">Күрделілік деңгейі</label>
+<select class="w-full bg-surface-container-low border-none rounded-xl py-3 px-4 focus:ring-1 focus:ring-primary/20 focus:bg-white transition-all outline-none appearance-none">
+<option>Бакалавриат негізі</option>
+<option>Жоғары деңгейлі зерттеу</option>
+<option>Докторантура синтезі</option>
+</select>
+</div>
+</div>
+<div class="mt-8 space-y-2">
+<label class="block text-xs font-bold uppercase tracking-wider text-on-surface-variant">Файлдарды жүктеу</label>
+<div class="border-2 border-dashed border-outline-variant/30 rounded-2xl p-12 text-center hover:bg-surface-container-low transition-colors cursor-pointer group">
+<span class="material-symbols-outlined text-4xl text-outline mb-4 group-hover:scale-110 transition-transform block" data-icon="cloud_upload">cloud_upload</span>
+<p class="text-on-surface-variant">Оқу бағдарламасын, дәрістерді немесе PDF файлдарын осында сүйреңіз</p>
+<p class="text-xs text-outline mt-2">Максималды файл өлшемі: 50MB (PDF, DOCX, TXT)</p>
+</div>
+</div>
+<div class="mt-8 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="bg-surface-container-high px-4 py-2 rounded-xl flex items-center gap-3">
+<span class="text-xs font-bold">СҰРАҚ САНЫ</span>
+<input class="w-12 bg-transparent border-none p-0 text-center font-bold text-primary focus:ring-0" type="number" value="15"/>
+</div>
+</div>
+<button class="px-8 py-3 bg-gradient-to-r from-primary to-primary-container text-white rounded-xl font-bold hover:scale-[1.02] transition-transform active:scale-95 shadow-md flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="bolt">bolt</span>
+                            AI арқылы тест генерациялау
+                        </button>
+</div>
+</section>
+<!-- Deployment History -->
+<section class="space-y-6">
+<div class="flex items-center justify-between">
+<h3 class="text-xl font-bold tracking-tight">Белсенді тағайындаулар</h3>
+<button class="text-sm font-bold text-primary flex items-center gap-1 hover:underline">
+                            Архивті көру <span class="material-symbols-outlined text-xs" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+<div class="space-y-4">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest p-6 rounded-2xl shadow-ambient flex items-center justify-between group hover:translate-x-1 transition-transform">
+<div class="flex items-center gap-6">
+<div class="h-12 w-12 bg-surface-container-high rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="science">science</span>
+</div>
+<div>
+<h4 class="font-bold">Органикалық химия II - Квиз 4</h4>
+<p class="text-sm text-on-surface-variant">Топ: Жоғары курс STEM А секциясы • 45 Студент</p>
+</div>
+</div>
+<div class="flex items-center gap-8">
+<div class="text-right">
+<p class="text-xs font-bold uppercase tracking-widest text-outline">Статус</p>
+<p class="text-sm font-semibold text-tertiary">Орындалуда</p>
+</div>
+<button class="p-2 hover:bg-surface-container-low rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-lowest p-6 rounded-2xl shadow-ambient flex items-center justify-between group hover:translate-x-1 transition-transform">
+<div class="flex items-center gap-6">
+<div class="h-12 w-12 bg-surface-container-high rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="history_edu">history_edu</span>
+</div>
+<div>
+<h4 class="font-bold">Қазіргі әдебиет синтезі</h4>
+<p class="text-sm text-on-surface-variant">Топ: Creative Writing Honors • 22 Студент</p>
+</div>
+</div>
+<div class="flex items-center gap-8">
+<div class="text-right">
+<p class="text-xs font-bold uppercase tracking-widest text-outline">Статус</p>
+<p class="text-sm font-semibold text-secondary">Жоспарланған: 24 қазан</p>
+</div>
+<button class="p-2 hover:bg-surface-container-low rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Column: Constraints -->
+<aside class="lg:col-span-4 space-y-8">
+<!-- Global Constraints -->
+<section class="bg-surface-container-high rounded-2xl p-8 sticky top-24">
+<h3 class="text-lg font-bold mb-6">Жалпы шектеулер</h3>
+<div class="space-y-8">
+<!-- Time Limit -->
+<div class="space-y-4">
+<div class="flex justify-between items-center">
+<label class="text-xs font-bold uppercase tracking-wider text-on-surface-variant">Уақыт шектеуі</label>
+<span class="text-sm font-black text-primary">60 МИН</span>
+</div>
+<input class="w-full" max="180" min="15" step="5" type="range" value="60"/>
+<div class="flex justify-between text-[10px] text-outline font-bold">
+<span>15М</span>
+<span>180М</span>
+</div>
+</div>
+<!-- Cohort Selection -->
+<div class="space-y-4">
+<label class="text-xs font-bold uppercase tracking-wider text-on-surface-variant">Топтарға тағайындау</label>
+<div class="space-y-2">
+<label class="flex items-center gap-3 bg-surface-container-lowest p-3 rounded-xl cursor-pointer hover:bg-white transition-colors">
+<input checked="" class="rounded border-none bg-surface-container-high text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-sm font-medium">STEM Scholars Alpha</span>
+</label>
+<label class="flex items-center gap-3 bg-surface-container-lowest p-3 rounded-xl cursor-pointer hover:bg-white transition-colors">
+<input class="rounded border-none bg-surface-container-high text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-sm font-medium">Инженерия 101</span>
+</label>
+<label class="flex items-center gap-3 bg-surface-container-lowest p-3 rounded-xl cursor-pointer hover:bg-white transition-colors">
+<input class="rounded border-none bg-surface-container-high text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-sm font-medium">Зерттеушілер B тобы</span>
+</label>
+</div>
+</div>
+<!-- Proctored Mode -->
+<div class="pt-6 border-t border-outline-variant/30">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="lock">lock</span>
+<span class="text-sm font-bold">AI бақылау режимі</span>
+</div>
+<div class="w-10 h-5 bg-primary/20 rounded-full relative cursor-pointer">
+<div class="absolute right-1 top-1 w-3 h-3 bg-primary rounded-full"></div>
+</div>
+</div>
+<p class="text-[11px] text-on-surface-variant mt-3 leading-relaxed">
+                                Тест кезінде студенттердің бетін тану және браузер терезесін бұғаттау функциясын қосады.
+                            </p>
+</div>
+</div>
+<button class="w-full mt-10 py-4 bg-on-surface text-surface rounded-xl font-bold hover:bg-slate-800 transition-colors shadow-lg">
+                        Жалпы шектеулерді қолдану
+                    </button>
+</section>
+<!-- Scholar's Progress -->
+<section class="bg-surface-container-lowest rounded-2xl p-6 shadow-ambient">
+<h4 class="text-xs font-bold uppercase tracking-widest text-outline mb-4">Оқу жоспарының орындалуы</h4>
+<div class="relative h-2 w-full bg-outline-variant/20 rounded-full overflow-hidden mb-3">
+<div class="absolute h-full w-[68%] bg-primary shadow-[0_0_8px_rgba(183,19,26,0.5)]"></div>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-xs font-bold text-on-surface-variant">Жоғары физика модулі</span>
+<span class="text-xs font-black text-primary">68%</span>
+</div>
+</section>
+</aside>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full bg-surface-container-lowest h-16 flex items-center justify-around z-50 shadow-[0_-2px_10px_rgba(0,0,0,0.05)]">
+<button class="flex flex-col items-center gap-1 text-slate-500">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="text-[10px] font-bold">БАСТЫ</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-red-600">
+<span class="material-symbols-outlined" data-icon="menu_book">menu_book</span>
+<span class="text-[10px] font-bold">ҚҰРАСТЫРУШЫ</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-slate-500">
+<span class="material-symbols-outlined" data-icon="psychology">psychology</span>
+<span class="text-[10px] font-bold">ЛАБ</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-slate-500">
+<span class="material-symbols-outlined" data-icon="insights">insights</span>
+<span class="text-[10px] font-bold">СТАТ</span>
+</button>
+</nav>
+</body></html>

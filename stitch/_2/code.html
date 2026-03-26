@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+
+<html class="light" lang="kk"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EduAI платформасы | Бағалау және нәтижелер</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "tertiary-fixed": "#afecff",
+            "surface-container-highest": "#e1e3e4",
+            "primary-fixed-dim": "#ffb4ac",
+            "surface-tint": "#bb171c",
+            "secondary-fixed": "#d7e4ec",
+            "surface": "#f8f9fa",
+            "surface-container-high": "#e7e8e9",
+            "surface-container-lowest": "#ffffff",
+            "on-primary-fixed-variant": "#93000d",
+            "on-primary-fixed": "#410002",
+            "surface-container-low": "#f3f4f5",
+            "inverse-primary": "#ffb4ac",
+            "background": "#f8f9fa",
+            "on-secondary-fixed": "#111d23",
+            "secondary-fixed-dim": "#bbc8d0",
+            "on-surface": "#191c1d",
+            "primary-container": "#db322f",
+            "on-background": "#191c1d",
+            "outline-variant": "#e4beb9",
+            "primary-fixed": "#ffdad6",
+            "surface-variant": "#e1e3e4",
+            "on-error": "#ffffff",
+            "secondary": "#546067",
+            "on-secondary-container": "#5a666d",
+            "on-tertiary-container": "#f9fdff",
+            "error": "#ba1a1a",
+            "error-container": "#ffdad6",
+            "secondary-container": "#d7e4ec",
+            "surface-dim": "#d9dadb",
+            "on-error-container": "#93000a",
+            "on-primary": "#ffffff",
+            "tertiary-container": "#008097",
+            "on-primary-container": "#fffbff",
+            "outline": "#906f6c",
+            "tertiary-fixed-dim": "#72d4ef",
+            "inverse-on-surface": "#f0f1f2",
+            "on-tertiary": "#ffffff",
+            "tertiary": "#006578",
+            "surface-bright": "#f8f9fa",
+            "primary": "#b7131a",
+            "on-tertiary-fixed-variant": "#004e5d",
+            "inverse-surface": "#2e3132",
+            "surface-container": "#edeeef",
+            "on-tertiary-fixed": "#001f27",
+            "on-surface-variant": "#5b403d",
+            "on-secondary-fixed-variant": "#3c494f",
+            "on-secondary": "#ffffff"
+          },
+          fontFamily: {
+            "headline": ["Inter"],
+            "body": ["Inter"],
+            "label": ["Inter"]
+          },
+          borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .glass-nav {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(20px);
+    }
+    .ghost-border {
+      border: 1px solid rgba(228, 190, 185, 0.15);
+    }
+    body {
+      background-color: #f8f9fa;
+      color: #191c1d;
+    }
+  </style>
+</head>
+<body class="font-body selection:bg-primary/20">
+<!-- Side Navigation Shell -->
+<aside class="h-screen w-64 fixed left-0 top-0 border-r border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 z-40 hidden md:flex flex-col">
+<div class="p-6">
+<div class="flex items-center gap-3 mb-8">
+<div class="w-10 h-10 bg-primary flex items-center justify-center rounded-xl overflow-hidden">
+<img alt="EduAI Shield" class="w-6 h-6 invert" data-alt="minimalist academic crest logo in white on a deep red background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZKHKx_7zqnmYi_WAAHJ2tcvWvWiz6F4kmQW6mVMyhRZ7Hj9tdiHkzw4EVFu2SQB7b3PDJxzF69vs_3W2AEp9e8gfmduO-fED1bboTtZGBjxhz8iKC66xP6V3aLTKiTNbSwGePnCVLrtKa841NNYGUKKHighbGkJL9R7DAz8VGId-zrHq8-ia2Aigtq0tIKiPNKxvdTpzBCtT4FhjbBgZH_zNHF5bjk1P4MJw6RYghEJa5hq-76rNv0csU9O_Da5LdUS5Q01nzpk44"/>
+</div>
+<div>
+<h1 class="text-lg font-black text-slate-900 dark:text-white leading-none">Академиялық Ателье</h1>
+<p class="font-['Inter'] uppercase tracking-widest text-[10px] text-slate-500 mt-1">Нақты оқыту</p>
+</div>
+</div>
+<nav class="flex flex-col gap-2">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-red-600 dark:hover:text-red-400 hover:translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-['Inter'] uppercase tracking-widest text-[10px]">Бақылау тақтасы</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-red-600 dark:text-red-500 bg-white dark:bg-slate-900 rounded-xl font-bold" href="#">
+<span class="material-symbols-outlined">menu_book</span>
+<span class="font-['Inter'] uppercase tracking-widest text-[10px]">Оқу жоспары</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-red-600 dark:hover:text-red-400 hover:translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">psychology</span>
+<span class="font-['Inter'] uppercase tracking-widest text-[10px]">AI зертханасы</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-red-600 dark:hover:text-red-400 hover:translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">insights</span>
+<span class="font-['Inter'] uppercase tracking-widest text-[10px]">Көрсеткіштер</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-red-600 dark:hover:text-red-400 hover:translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">local_library</span>
+<span class="font-['Inter'] uppercase tracking-widest text-[10px]">Кітапхана</span>
+</a>
+</nav>
+</div>
+<div class="mt-auto p-4">
+<button class="w-full py-4 bg-gradient-to-r from-primary to-primary-container text-white rounded-xl font-bold text-[10px] uppercase tracking-widest hover:scale-[1.02] transition-transform active:scale-95">
+        Жаңа зерттеу
+      </button>
+</div>
+</aside>
+<!-- Top Navigation Shell -->
+<header class="fixed top-0 right-0 left-0 md:left-64 h-16 glass-nav z-30 flex items-center justify-between px-8">
+<div class="flex items-center gap-6">
+<h2 class="text-xl font-bold tracking-tighter text-slate-900">EduAI платформасы</h2>
+<div class="hidden lg:flex gap-6">
+<a class="text-slate-500 hover:text-slate-900 transition-colors text-sm font-medium" href="#">Студент нұсқасы</a>
+<a class="text-red-600 font-semibold border-b-2 border-red-600 text-sm" href="#">Мұғалім нұсқасы</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-slate-500 hover:bg-slate-50 rounded-full transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-slate-500 hover:bg-slate-50 rounded-full transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="h-8 w-8 rounded-full overflow-hidden bg-slate-200 ml-2">
+<img alt="User profile avatar" class="w-full h-full object-cover" data-alt="professional portrait of a male educator in a library setting with soft bokeh" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCaHlN5e8xHIybfeiYz3Ri9Zd8onQrpTgD2XB5FQq0qZvyGe5fCoJ4kpCEV8NpNEglhgvXQg8FDZiDzH4QELv55ZSKsjzUH4BcXzteNMQQo49MQnWO3sqpEtJEXj_Vpwgr2Wz9df9whkOHddLTYk-64bWJh3H1xWpyuD_0bdDTy0vhmoXeMGbi0UXnLLaHNtQWv-kxSQ5isugkEMWVPJ95Rq2XoFb0eq0R0P4Tmwd472C5F01Lh51kZL0h9ex_HvQwpIoYga3KHjqJA"/>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-24 pb-12 px-6 md:pl-72 md:pr-12 min-h-screen">
+<!-- Header Section: Asymmetric Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12 items-end">
+<div class="lg:col-span-8">
+<nav class="flex items-center gap-2 mb-4">
+<span class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">Оқу жоспары</span>
+<span class="material-symbols-outlined text-xs text-on-surface-variant">chevron_right</span>
+<span class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">4-бөлім: Биоэтика</span>
+<span class="material-symbols-outlined text-xs text-on-surface-variant">chevron_right</span>
+<span class="text-[10px] font-bold uppercase tracking-widest text-primary">Джулиан Торн</span>
+</nav>
+<h3 class="text-5xl font-extrabold tracking-tight text-on-surface leading-tight">
+          Бағалау хаттамасы: <br/><span class="text-on-surface-variant font-light italic">Джулиан Торн</span>
+</h3>
+</div>
+<div class="lg:col-span-4 flex flex-col items-end gap-2">
+<div class="text-right">
+<p class="text-[10px] uppercase tracking-widest text-on-surface-variant font-bold mb-1">AI болжамды бағасы</p>
+<div class="text-4xl font-black text-primary">88<span class="text-xl font-medium text-on-surface-variant">/100</span></div>
+</div>
+</div>
+</div>
+<!-- Main Grid: Bento Style -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+<!-- AI Feedback Summary Card (Wide) -->
+<div class="lg:col-span-12 bg-surface-container-lowest rounded-xl p-8 shadow-sm ghost-border">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">psychology</span>
+<h4 class="text-sm font-bold uppercase tracking-widest">AI кері байланысы</h4>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+<div class="space-y-4">
+<p class="text-[10px] font-black uppercase text-on-surface-variant tracking-tighter">Күшті жақтары</p>
+<p class="text-sm leading-relaxed text-on-surface">Студент деонтологиялық этиканы терең түсінетінін көрсетеді және универсализация принципін заманауи медициналық жағдайларға тиімді қолданады.</p>
+</div>
+<div class="space-y-4">
+<p class="text-[10px] font-black uppercase text-on-surface-variant tracking-tighter">Әлсіз жақтары</p>
+<p class="text-sm leading-relaxed text-on-surface">Утилитарлық нәтижелер туралы аргументтерде эмпирикалық негіздеме жетіспейді және кейде моральдық жауапкершілік заңды жауапкершілікпен шатастырылады.</p>
+</div>
+<div class="space-y-4">
+<p class="text-[10px] font-black uppercase text-on-surface-variant tracking-tighter">NLP талдауы</p>
+<div class="p-4 bg-surface-container-low rounded-lg">
+<p class="text-xs italic text-on-secondary-fixed-variant">"Сентименттік талдау мәтіндегі сенімділіктің жоғары деңгейін көрсетеді, бірақ семантикалық тығыздық соңғы үш абзацта айтарлықтай төмендейді."</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Critical Review of Responses (Tall/Main) -->
+<div class="lg:col-span-8 space-y-6">
+<div class="bg-surface-container-lowest rounded-xl p-8 shadow-sm ghost-border">
+<div class="flex justify-between items-center mb-8">
+<h4 class="text-sm font-bold uppercase tracking-widest">1-сұрақ: Вагонетка дилеммасы</h4>
+<span class="px-3 py-1 bg-primary/10 text-primary text-[10px] font-bold rounded-full">А БӨЛІМІ</span>
+</div>
+<div class="space-y-6">
+<div class="space-y-2">
+<label class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">Студенттің жауабы</label>
+<div class="p-6 bg-surface-container-low rounded-xl text-md leading-relaxed text-on-surface font-light">
+                "Ауыстырып-қосқыштың моральдық салмағын бағалау кезінде әрекеттің өзі дұрыс емес пе, әлде тек зардабы маңызды ма, соны ескеру керек. Менің ойымша, механизмге араласу арқылы мен қайғылы оқиғаның белсенді қатысушысы боламын. Дегенмен, Кант этикасы мынаны ұсынуы мүмкін..."
+              </div>
+</div>
+<div class="pt-6 border-t border-surface-container-high space-y-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-primary">auto_awesome</span>
+<span class="text-[10px] font-bold uppercase tracking-widest text-primary">AI бағалау талдауы</span>
+</div>
+<p class="text-sm text-on-surface-variant leading-relaxed">
+                Жауапта <span class="bg-primary/5 text-primary font-medium px-1 rounded">Агенттік мәселесі</span> дұрыс анықталған, бірақ оқулықта айтылған куәгер әсері қарастырылмаған. Мәтіндік дәлелдердің жоқтығы үшін бағалау салмағы -2-ге түзетілді.
+              </p>
+<div class="mt-8 flex gap-4">
+<button class="flex-1 py-3 bg-primary text-white rounded-xl font-bold text-xs uppercase tracking-widest hover:scale-[1.02] transition-transform shadow-lg shadow-primary/20">
+                  AI бағасын бекіту
+                </button>
+<button class="flex-1 py-3 bg-surface-container-high text-on-surface rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-surface-container-highest transition-colors">
+                  Қайта қарау
+                </button>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-8 shadow-sm ghost-border">
+<div class="flex justify-between items-center mb-8">
+<h4 class="text-sm font-bold uppercase tracking-widest">2-сұрақ: Медицинадағы автономия</h4>
+<span class="px-3 py-1 bg-surface-container-high text-on-surface-variant text-[10px] font-bold rounded-full">Б БӨЛІМІ</span>
+</div>
+<div class="space-y-6">
+<div class="space-y-2">
+<label class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">Студенттің жауабы</label>
+<div class="p-6 bg-surface-container-low rounded-xl text-md leading-relaxed text-on-surface font-light">
+                "Пациент автономиясы — заманауи биоэтиканың негізі. Пациент емделуден бас тартқан кезде, дәрігердің міндеті игілік жасаудан тұлғалықты құрметтеуге ауысады. Бұл 1974 жылғы кейс-стадиде нақты көрсетілген..."
+              </div>
+</div>
+<div class="pt-6 border-t border-surface-container-high">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-sm text-primary">auto_awesome</span>
+<span class="text-[10px] font-bold uppercase tracking-widest text-primary">AI бағалау талдауы</span>
+</div>
+<p class="text-sm text-on-surface-variant leading-relaxed">
+                Дәйексөздер тамаша қолданылған. "Жоғары академиялық стандарт" профилімен семантикалық сәйкестік. Түпнұсқа синтезі үшін +5 бонус ұсынылады.
+              </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Side Rails: Analytics & Metadata -->
+<div class="lg:col-span-4 space-y-6">
+<!-- Scholar's Progress -->
+<div class="bg-surface-container-lowest rounded-xl p-6 shadow-sm ghost-border">
+<h4 class="text-[10px] font-black uppercase tracking-widest mb-6">Студенттің үлгерімі</h4>
+<div class="space-y-6">
+<div>
+<div class="flex justify-between text-[10px] font-bold uppercase tracking-tighter mb-2">
+<span>Логикалық жүйелілік</span>
+<span class="text-primary">94%</span>
+</div>
+<div class="h-1 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[94%] shadow-[0_0_8px_rgba(183,19,26,0.5)]"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-[10px] font-bold uppercase tracking-tighter mb-2">
+<span>Сниди ойлау</span>
+<span class="text-primary">72%</span>
+</div>
+<div class="h-1 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[72%] shadow-[0_0_8px_rgba(183,19,26,0.5)]"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-[10px] font-bold uppercase tracking-tighter mb-2">
+<span>Грамматика және синтаксис</span>
+<span class="text-primary">88%</span>
+</div>
+<div class="h-1 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[88%] shadow-[0_0_8px_rgba(183,19,26,0.5)]"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Submission Artifact -->
+<div class="bg-surface-container-lowest rounded-xl p-6 shadow-sm ghost-border">
+<h4 class="text-[10px] font-black uppercase tracking-widest mb-4">Тапсырылған жұмыс</h4>
+<div class="relative group rounded-lg overflow-hidden cursor-zoom-in">
+<img alt="Handwritten notes on a desk" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500" data-alt="close up of handwritten academic notes with a fountain pen on textured parchment paper with warm desk lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7Bk2kZ0w-yhvz-bUqb3uThNJcnDruNBDOxMF7ZqbkAS62x0xQNJWUQAnk51gT-MX-HUlNw5I4dac5I3vNGgW5bQyKqtaBtfbiObeWRC5n8M1jl3NxnbiiBZj5mOCgFRGu7urh1FPhmBP-XtbFW9GZUX1ZcXIRj2x7rk3HygZtg2B_2qsJGaAoQlBPlGU2MrfxiAjzIBc82XKuJns0oeoJNLUwzYjWZjLDH4BKDDdKJGtcI8bbZZ0GBM7noEG7DzuAq9L-2R7HJjuG"/>
+<div class="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-white text-3xl">zoom_in</span>
+</div>
+</div>
+<div class="mt-4 space-y-2">
+<div class="flex justify-between text-xs">
+<span class="text-on-surface-variant">Тапсырылды</span>
+<span class="font-bold">24 қазан, 11:42</span>
+</div>
+<div class="flex justify-between text-xs">
+<span class="text-on-surface-variant">Жұмсалған уақыт</span>
+<span class="font-bold">42 минут</span>
+</div>
+</div>
+</div>
+<!-- Batch Controls -->
+<div class="bg-surface-container-lowest rounded-xl p-6 shadow-sm ghost-border">
+<h4 class="text-[10px] font-black uppercase tracking-widest mb-4">Тексеру кезегі</h4>
+<div class="space-y-3">
+<div class="flex items-center gap-3 p-3 bg-surface-container-low rounded-lg border-l-4 border-primary">
+<div class="w-8 h-8 rounded-full bg-slate-300 overflow-hidden">
+<img alt="Julian Thorne" class="w-full h-full object-cover" data-alt="headshot of a young male student with glasses looking thoughtfully at the camera" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCusrb4PMJMSKjr8ql_5cXlITOK0kodxaHkYF7ypeTL6uFb1IucUDrJtw-mt0tYiz-mL8OwEOsP9jCA7DYNfn3mmelyUiUORKCZ_1tHeX48LlOYzMZVVgmHgNZr8VzenICfrVlKIYVyk7UWiJ0VzjMjwITaRSdJ8smS447BU78bnyxhuvFMfT-vJwqml39CRIlu_2XeRAxsgmDNVbcY-UCEpP9M5DHW7dPZ1nw9Uw3ECpemKfiMgErn-auOsMs97LbiQXGiqEhx2_P"/>
+</div>
+<div class="flex-1">
+<p class="text-xs font-bold">Джулиан Торн</p>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-tighter">Ағымдағы</p>
+</div>
+</div>
+<div class="flex items-center gap-3 p-3 hover:bg-surface-container-low rounded-lg transition-colors cursor-pointer">
+<div class="w-8 h-8 rounded-full bg-slate-200 overflow-hidden">
+<img alt="Elena Rodriguez" class="w-full h-full object-cover" data-alt="headshot of a young female student with dark hair smiling gently in an outdoor setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBdCtvpsxpRI9qn5oChiyv2ZtI9Mbh411JwDXjINhUdgUxP2BIAtOwvDx2FgKPNSwHHUw_XezP70QpaZNvKyXRR83YRMp3c8Wb3doam9D6PVj1Wo_bv5IU66oCJfulGqybKPp_UaJMhCA-phd7Svr9LOOQfeImPEUpeBuQjijgGHaGtEjofvDdnd_JqXwCdOxVeEc6AR-CGe7jyz1KRL_x5keusC92FZPddEDulsdrEtGqqRr9aQ3Pfu8KLFTJ1J8_wt4CYc9ORClWT"/>
+</div>
+<div class="flex-1">
+<p class="text-xs font-bold text-on-surface-variant">Елена Родригес</p>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-tighter">Келесі</p>
+</div>
+</div>
+</div>
+<button class="w-full mt-6 py-3 border border-outline-variant text-on-surface rounded-xl font-bold text-[10px] uppercase tracking-widest hover:bg-surface-container-low transition-colors">
+            Журналды аяқтау
+          </button>
+</div>
+</div>
+</div>
+</main>
+<!-- Navigation Shell (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 right-0 bg-white shadow-[0_-4px_20px_rgba(0,0,0,0.05)] h-16 flex items-center justify-around px-4 z-50">
+<button class="flex flex-col items-center gap-1 text-slate-500">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-[8px] uppercase font-bold tracking-tighter">Басты</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">menu_book</span>
+<span class="text-[8px] uppercase font-bold tracking-tighter">Жоспар</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-slate-500">
+<span class="material-symbols-outlined">psychology</span>
+<span class="text-[8px] uppercase font-bold tracking-tighter">Зертхана</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-slate-500">
+<span class="material-symbols-outlined">insights</span>
+<span class="text-[8px] uppercase font-bold tracking-tighter">Статистика</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-slate-500">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-[8px] uppercase font-bold tracking-tighter">Профиль</span>
+</button>
+</nav>
+</body></html>
