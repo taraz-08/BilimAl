@@ -1,9 +1,12 @@
 from datetime import datetime, timedelta
 from typing import Optional
 from jose import JWTError, jwt
+import bcrypt as _bcrypt
+if not hasattr(_bcrypt, "__about__"):
+    _bcrypt.__about__ = type("_", (), {"__version__": _bcrypt.__version__})()
 from passlib.context import CryptContext
 from sqlalchemy.orm import Session
-from models.user import User, UserRole
+from models.user import User
 from config import settings
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
