@@ -46,10 +46,11 @@ def register(payload: RegisterRequest, db: Session = Depends(get_db)):
     db.commit()
     db.refresh(user)
 
-    token = create_access_token({"sub": str(user.id), "role": user.role})
+    role_str = user.role.value if hasattr(user.role, "value") else str(user.role)
+    token = create_access_token({"sub": str(user.id), "role": role_str})
     return TokenResponse(
         access_token=token,
-        role=user.role,
+        role=role_str,
         full_name=user.full_name,
         user_id=user.id,
     )
@@ -61,10 +62,11 @@ def login(payload: LoginRequest, db: Session = Depends(get_db)):
     if not user:
         raise HTTPException(status_code=401, detail="Invalid credentials")
 
-    token = create_access_token({"sub": str(user.id), "role": user.role})
+    role_str = user.role.value if hasattr(user.role, "value") else str(user.role)
+    token = create_access_token({"sub": str(user.id), "role": role_str})
     return TokenResponse(
         access_token=token,
-        role=user.role,
+        role=role_str,
         full_name=user.full_name,
         user_id=user.id,
     )

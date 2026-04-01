@@ -1,4 +1,4 @@
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel, EmailStr, ConfigDict
 from typing import Optional
 from models.user import UserRole
 
@@ -18,8 +18,10 @@ class LoginRequest(BaseModel):
 
 
 class TokenResponse(BaseModel):
+    model_config = ConfigDict(use_enum_values=True)
+
     access_token: str
     token_type: str = "bearer"
-    role: UserRole
+    role: str
     full_name: str
     user_id: int
