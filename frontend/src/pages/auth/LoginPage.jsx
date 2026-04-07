@@ -75,31 +75,48 @@ export default function LoginPage() {
   const iconBg = dark ? 'rgba(183,19,26,0.3)' : 'rgba(183,19,26,0.08)'
 
   return (
-    <main
-      className="min-h-screen flex relative overflow-hidden transition-colors duration-500"
-      style={{ background: dark ? 'linear-gradient(135deg, #0f0a0a 0%, #1a0505 50%, #0f0a0a 100%)' : 'var(--color-surface)' }}
+    <motion.main
+      animate={{ background: dark ? 'linear-gradient(135deg, #0f0a0a 0%, #1a0505 50%, #0f0a0a 100%)' : '#f8f9fa' }}
+      transition={{ duration: 0.6, ease: 'easeInOut' }}
+      className="min-h-screen flex relative overflow-hidden"
     >
       {/* Blobs */}
-      <div className="blob w-96 h-96 top-[-6rem] left-[-4rem]"
-        style={{ background: 'radial-gradient(circle, #b7131a, transparent)', opacity: dark ? 0.25 : 0.1 }} />
-      <div className="blob w-80 h-80 bottom-[-4rem] right-[35%]"
-        style={{ background: 'radial-gradient(circle, #db322f, transparent)', opacity: dark ? 0.2 : 0.08, animationDelay: '2s' }} />
+      <motion.div
+        animate={{ opacity: dark ? 0.25 : 0.1 }}
+        transition={{ duration: 0.6 }}
+        className="blob w-96 h-96 top-[-6rem] left-[-4rem] absolute"
+        style={{ background: 'radial-gradient(circle, #b7131a, transparent)' }}
+      />
+      <motion.div
+        animate={{ opacity: dark ? 0.2 : 0.08 }}
+        transition={{ duration: 0.6 }}
+        className="blob w-80 h-80 bottom-[-4rem] right-[35%] absolute"
+        style={{ background: 'radial-gradient(circle, #db322f, transparent)', animationDelay: '2s' }}
+      />
 
-      {/* Toggle button — top right */}
-      <button
+      {/* Toggle button — top right, icon only */}
+      <motion.button
         onClick={() => setDarkBg(p => !p)}
-        className="absolute top-5 right-5 z-50 flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-bold transition-all"
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        className="absolute top-5 right-5 z-50 w-10 h-10 rounded-xl flex items-center justify-center transition-colors"
         style={{
-          background: dark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.06)',
+          background: dark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.07)',
           color: dark ? '#fff' : '#191c1d',
-          border: `1px solid ${dark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.1)'}`,
+          border: `1px solid ${dark ? 'rgba(255,255,255,0.15)' : 'rgba(0,0,0,0.08)'}`,
         }}
       >
-        <span className="material-symbols-outlined text-[16px]" style={{ fontVariationSettings: "'FILL' 1" }}>
+        <motion.span
+          key={dark ? 'light' : 'dark'}
+          initial={{ rotate: -30, opacity: 0 }}
+          animate={{ rotate: 0, opacity: 1 }}
+          transition={{ duration: 0.3 }}
+          className="material-symbols-outlined text-[18px]"
+          style={{ fontVariationSettings: "'FILL' 1" }}
+        >
           {dark ? 'light_mode' : 'dark_mode'}
-        </span>
-        {dark ? 'Ақ фон' : 'Қара фон'}
-      </button>
+        </motion.span>
+      </motion.button>
 
       {/* Left Panel */}
       <div className="hidden lg:flex flex-col justify-between w-[45%] p-12 relative z-10">
@@ -314,6 +331,6 @@ export default function LoginPage() {
           </div>
         </motion.div>
       </div>
-    </main>
+    </motion.main>
   )
 }
