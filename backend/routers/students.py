@@ -77,20 +77,30 @@ def get_my_grades(current_user: User = Depends(require_student), db: Session = D
 
 @router.get("/ranking", response_model=List[RankingEntry])
 def get_ranking(current_user: User = Depends(require_student), db: Session = Depends(get_db)):
+    from sqlalchemy import func
+    from sqlalchemy.orm import joinedload
+
     profile = _get_student_profile(current_user, db)
 
-    # Rank within same group if student has a group, otherwise all students
+    # Load all students in one query with their user info
+    q = db.query(StudentProfile).options(joinedload(StudentProfile.user))
     if profile.group_id:
-        group_students = db.query(StudentProfile).filter(
-            StudentProfile.group_id == profile.group_id
-        ).all()
-    else:
-        group_students = db.query(StudentProfile).all()
+        q = q.filter(StudentProfile.group_id == profile.group_id)
+    group_students = q.all()
+
+    student_ids = [s.id for s in group_students]
+
+    # Load ALL grades for all students in ONE query
+    all_grades = db.query(Grade).filter(Grade.student_id.in_(student_ids)).all()
+
+    # Group grades by student_id in memory
+    grades_by_student: dict = {}
+    for g in all_grades:
+        grades_by_student.setdefault(g.student_id, []).append(g)
 
     scores = []
     for s in group_students:
-        grades = db.query(Grade).filter(Grade.student_id == s.id).all()
-        avg = _avg_score(grades)
+        avg = _avg_score(grades_by_student.get(s.id, []))
         scores.append((s, avg))
     scores.sort(key=lambda x: x[1], reverse=True)
 
@@ -348,25 +358,34 @@ def get_teacher_ranking(
     db: Session = Depends(get_db),
 ):
     """Teacher view: all students with grade letter and 4→5 improvement candidates."""
-    query = db.query(StudentProfile)
+    from sqlalchemy.orm import joinedload
+
+    query = db.query(StudentProfile).options(
+        joinedload(StudentProfile.user),
+        joinedload(StudentProfile.group),
+    )
     if group_id:
         query = query.filter(StudentProfile.group_id == group_id)
     students = query.all()
 
+    student_ids = [s.id for s in students]
+    all_grades = db.query(Grade).filter(Grade.student_id.in_(student_ids)).all() if student_ids else []
+    grades_map: dict = {}
+    for g in all_grades:
+        grades_map.setdefault(g.student_id, []).append(g)
+
     result = []
     for s in students:
-        grades = db.query(Grade).filter(Grade.student_id == s.id).all()
+        grades = grades_map.get(s.id, [])
         if not grades:
             avg = 0.0
             trend = "stable"
         else:
             avg = _avg_score(grades)
-            # Trend: compare last 2 vs first 2
             scores = [g.total_score / max(1, g.max_score) * 100 for g in grades]
-            if len(scores) >= 2:
-                trend = "up" if scores[-1] > scores[0] else ("down" if scores[-1] < scores[0] else "stable")
-            else:
-                trend = "stable"
+            trend = "up" if len(scores) >= 2 and scores[-1] > scores[0] else (
+                "down" if len(scores) >= 2 and scores[-1] < scores[0] else "stable"
+            )
 
         result.append(TeacherRankingEntry(
             student_id=s.id,
@@ -375,7 +394,7 @@ def get_teacher_ranking(
             group_name=s.group.name if s.group else None,
             avg_score=round(avg, 1),
             grade_letter=_grade_letter(avg),
-            can_improve=(70 <= avg < 80),  # Grade 4 zone, close to 5
+            can_improve=(70 <= avg < 80),
             trend=trend,
             test_count=len(grades),
         ))
