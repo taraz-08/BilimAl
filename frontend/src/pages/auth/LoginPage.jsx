@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { motion } from 'framer-motion'
+import { motion, useAnimation } from 'framer-motion'
 import { useAuth } from '../../context/AuthContext'
 import { useLang } from '../../context/LangContext'
 import { useToast } from '../../context/ToastContext'
@@ -26,13 +26,19 @@ export default function LoginPage() {
   const [groups, setGroups] = useState([])
   const [showPass, setShowPass] = useState(false)
   const [darkBg, setDarkBg] = useState(false)
-  const [ripple, setRipple] = useState(false)
-  const [nextDark, setNextDark] = useState(true)
+  const [showWipe, setShowWipe] = useState(false)
+  const nextDarkRef = useRef(false)
+  const wipeControls = useAnimation()
 
-  const handleToggle = () => {
-    const next = !darkBg
-    setNextDark(next)
-    setRipple(true)
+  const handleToggle = async () => {
+    if (showWipe) return
+    nextDarkRef.current = !darkBg
+    setShowWipe(true)
+    wipeControls.set({ x: '-100%' })
+    await wipeControls.start({ x: '0%', transition: { duration: 0.5, ease: [0.76, 0, 0.24, 1] } })
+    setDarkBg(nextDarkRef.current)
+    await wipeControls.start({ x: '100%', transition: { duration: 0.5, ease: [0.76, 0, 0.24, 1] } })
+    setShowWipe(false)
   }
 
   useEffect(() => {
@@ -85,21 +91,23 @@ export default function LoginPage() {
   return (
     <motion.main
       className="min-h-screen flex relative overflow-hidden"
-      style={{ background: dark ? 'linear-gradient(135deg, #0f0a0a 0%, #1a0505 50%, #0f0a0a 100%)' : '#f8f9fa' }}
+      style={{ background: dark ? 'linear-gradient(135deg, #0f0a0a 0%, #1a0505 100%)' : '#f8f9fa' }}
     >
-      {/* Ripple overlay — circular reveal from top-right */}
-      {ripple && (
+      {/* Wipe panel — sweeps left→right then exits right→off */}
+      {showWipe && (
         <motion.div
-          className="fixed inset-0 z-40 pointer-events-none"
-          style={{ background: nextDark ? 'linear-gradient(135deg, #0f0a0a 0%, #1a0505 100%)' : '#f8f9fa' }}
-          initial={{ clipPath: 'circle(0% at calc(100% - 2.5rem) 3.5rem)' }}
-          animate={{ clipPath: 'circle(200% at calc(100% - 2.5rem) 3.5rem)' }}
-          transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
-          onAnimationComplete={() => {
-            setDarkBg(nextDark)
-            setRipple(false)
-          }}
-        />
+          animate={wipeControls}
+          className="fixed inset-0 z-40 pointer-events-none flex items-center justify-center overflow-hidden"
+          style={{ background: 'linear-gradient(135deg, #8b0d12 0%, #b7131a 40%, #db322f 100%)' }}
+        >
+          {/* BilimAI logo centered on panel */}
+          <div className="flex flex-col items-center gap-3 select-none">
+            <div className="w-14 h-14 rounded-2xl bg-white/20 flex items-center justify-center">
+              <span className="material-symbols-outlined text-white text-3xl" style={{ fontVariationSettings: "'FILL' 1" }}>auto_stories</span>
+            </div>
+            <span className="text-white font-black text-2xl tracking-tight">BilimAI</span>
+          </div>
+        </motion.div>
       )}
       {/* Blobs */}
       <motion.div
