@@ -25,6 +25,7 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false)
   const [groups, setGroups] = useState([])
   const [showPass, setShowPass] = useState(false)
+  const [darkBg, setDarkBg] = useState(false)
 
   useEffect(() => {
     groupsAPI.list().then(setGroups).catch(() => {})
@@ -65,12 +66,40 @@ export default function LoginPage() {
     }
   }
 
-  return (
-    <main className="min-h-screen flex relative overflow-hidden bg-surface">
+  const dark = darkBg
+  const txt = dark ? 'text-white' : 'text-on-surface'
+  const txtMuted = dark ? 'text-slate-400' : 'text-on-surface-variant'
+  const featureCard = dark
+    ? { background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.08)' }
+    : { background: 'rgba(255,255,255,0.8)', border: '1px solid rgba(183,19,26,0.12)' }
+  const iconBg = dark ? 'rgba(183,19,26,0.3)' : 'rgba(183,19,26,0.08)'
 
-      {/* Subtle blobs */}
-      <div className="blob w-96 h-96 top-[-6rem] left-[-4rem] opacity-10" style={{ background: 'radial-gradient(circle, #b7131a, transparent)' }} />
-      <div className="blob w-80 h-80 bottom-[-4rem] right-[35%] opacity-10" style={{ background: 'radial-gradient(circle, #db322f, transparent)', animationDelay: '2s' }} />
+  return (
+    <main
+      className="min-h-screen flex relative overflow-hidden transition-colors duration-500"
+      style={{ background: dark ? 'linear-gradient(135deg, #0f0a0a 0%, #1a0505 50%, #0f0a0a 100%)' : 'var(--color-surface)' }}
+    >
+      {/* Blobs */}
+      <div className="blob w-96 h-96 top-[-6rem] left-[-4rem]"
+        style={{ background: 'radial-gradient(circle, #b7131a, transparent)', opacity: dark ? 0.25 : 0.1 }} />
+      <div className="blob w-80 h-80 bottom-[-4rem] right-[35%]"
+        style={{ background: 'radial-gradient(circle, #db322f, transparent)', opacity: dark ? 0.2 : 0.08, animationDelay: '2s' }} />
+
+      {/* Toggle button — top right */}
+      <button
+        onClick={() => setDarkBg(p => !p)}
+        className="absolute top-5 right-5 z-50 flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-bold transition-all"
+        style={{
+          background: dark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.06)',
+          color: dark ? '#fff' : '#191c1d',
+          border: `1px solid ${dark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.1)'}`,
+        }}
+      >
+        <span className="material-symbols-outlined text-[16px]" style={{ fontVariationSettings: "'FILL' 1" }}>
+          {dark ? 'light_mode' : 'dark_mode'}
+        </span>
+        {dark ? 'Ақ фон' : 'Қара фон'}
+      </button>
 
       {/* Left Panel */}
       <div className="hidden lg:flex flex-col justify-between w-[45%] p-12 relative z-10">
@@ -79,23 +108,23 @@ export default function LoginPage() {
           <div className="w-10 h-10 rounded-xl flex items-center justify-center tonal-gradient">
             <span className="material-symbols-outlined text-white text-[18px]" style={{ fontVariationSettings: "'FILL' 1" }}>auto_stories</span>
           </div>
-          <span className="font-black text-xl tracking-tight text-on-surface">BilimAI</span>
+          <span className={`font-black text-xl tracking-tight ${txt}`}>BilimAI</span>
         </div>
 
         {/* Hero text */}
         <div className="space-y-8">
           <div className="space-y-4">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold tracking-wider"
-              style={{ color: '#b7131a', background: 'rgba(183,19,26,0.07)', border: '1px solid rgba(183,19,26,0.2)' }}>
+              style={{ color: dark ? '#ff8983' : '#b7131a', background: 'rgba(183,19,26,0.1)', border: '1px solid rgba(183,19,26,0.25)' }}>
               <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
               ЖАСАНДЫ ИНТЕЛЛЕКТ ПЛАТФОРМАСЫ
             </div>
-            <h1 className="text-5xl xl:text-6xl font-black text-on-surface leading-[1.05] tracking-tight">
+            <h1 className={`text-5xl xl:text-6xl font-black leading-[1.05] tracking-tight ${txt}`}>
               Білімің<br />
               <span className="gradient-text">болашағы</span><br />
               бүгін.
             </h1>
-            <p className="text-on-surface-variant text-lg leading-relaxed max-w-sm">
+            <p className={`text-lg leading-relaxed max-w-sm ${txtMuted}`}>
               AI негізіндегі оқу платформасы — студент пен оқытушыны байланыстырады.
             </p>
           </div>
@@ -108,22 +137,23 @@ export default function LoginPage() {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.2 + i * 0.1 }}
-                className="flex items-center gap-4 p-4 rounded-2xl bg-surface-container-lowest ghost-border"
+                className="flex items-center gap-4 p-4 rounded-2xl"
+                style={featureCard}
               >
                 <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
-                  style={{ background: 'rgba(183,19,26,0.08)' }}>
+                  style={{ background: iconBg }}>
                   <span className="material-symbols-outlined text-primary text-[18px]" style={{ fontVariationSettings: "'FILL' 1" }}>{f.icon}</span>
                 </div>
                 <div>
-                  <p className="text-on-surface text-sm font-bold">{f.label}</p>
-                  <p className="text-on-surface-variant text-xs">{f.desc}</p>
+                  <p className={`text-sm font-bold ${txt}`}>{f.label}</p>
+                  <p className={`text-xs ${txtMuted}`}>{f.desc}</p>
                 </div>
               </motion.div>
             ))}
           </div>
         </div>
 
-        <p className="text-on-surface-variant text-xs">© 2026 BilimAI • Delta тобы</p>
+        <p className={`text-xs ${txtMuted}`}>© 2026 BilimAI • Delta тобы</p>
       </div>
 
       {/* Right Panel — Form */}
@@ -135,8 +165,13 @@ export default function LoginPage() {
           className="w-full max-w-md"
         >
           {/* Card */}
-          <div className="rounded-3xl p-8 md:p-10 bg-surface-container-lowest ghost-border"
-            style={{ boxShadow: '0 8px 40px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04)' }}>
+          <div className="rounded-3xl p-8 md:p-10"
+            style={{
+              background: dark ? 'rgba(255,255,255,0.06)' : 'rgba(255,255,255,0.97)',
+              border: `1px solid ${dark ? 'rgba(255,255,255,0.1)' : 'var(--color-outline-variant)'}`,
+              boxShadow: dark ? '0 24px 64px rgba(0,0,0,0.5)' : '0 8px 40px rgba(0,0,0,0.08)',
+              backdropFilter: dark ? 'blur(20px)' : 'none',
+            }}>
 
             {/* Header */}
             <div className="flex justify-between items-start mb-8">
@@ -148,10 +183,10 @@ export default function LoginPage() {
                   </div>
                   <span className="font-black text-on-surface">BilimAI</span>
                 </div>
-                <h2 className="text-2xl font-black text-on-surface tracking-tight">
+                <h2 className={`text-2xl font-black tracking-tight ${dark ? 'text-white' : 'text-on-surface'}`}>
                   {mode === 'login' ? 'Қош келдіңіз' : 'Тіркелу'}
                 </h2>
-                <p className="text-on-surface-variant text-sm mt-1">
+                <p className={`text-sm mt-1 ${dark ? 'text-slate-400' : 'text-on-surface-variant'}`}>
                   {mode === 'login' ? 'Аккаунтыңызға кіріңіз' : 'Жаңа аккаунт жасаңыз'}
                 </p>
               </div>
