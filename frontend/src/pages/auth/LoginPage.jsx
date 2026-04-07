@@ -1,6 +1,6 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { motion, useAnimation } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { useAuth } from '../../context/AuthContext'
 import { useLang } from '../../context/LangContext'
 import { useToast } from '../../context/ToastContext'
@@ -26,20 +26,8 @@ export default function LoginPage() {
   const [groups, setGroups] = useState([])
   const [showPass, setShowPass] = useState(false)
   const [darkBg, setDarkBg] = useState(false)
-  const [showWipe, setShowWipe] = useState(false)
-  const nextDarkRef = useRef(false)
-  const wipeControls = useAnimation()
 
-  const handleToggle = async () => {
-    if (showWipe) return
-    nextDarkRef.current = !darkBg
-    setShowWipe(true)
-    wipeControls.set({ x: '-100%' })
-    await wipeControls.start({ x: '0%', transition: { duration: 0.5, ease: [0.76, 0, 0.24, 1] } })
-    setDarkBg(nextDarkRef.current)
-    await wipeControls.start({ x: '100%', transition: { duration: 0.5, ease: [0.76, 0, 0.24, 1] } })
-    setShowWipe(false)
-  }
+  const handleToggle = () => setDarkBg(p => !p)
 
   useEffect(() => {
     groupsAPI.list().then(setGroups).catch(() => {})
@@ -89,26 +77,10 @@ export default function LoginPage() {
   const iconBg = dark ? 'rgba(183,19,26,0.3)' : 'rgba(183,19,26,0.08)'
 
   return (
-    <motion.main
+    <main
       className="min-h-screen flex relative overflow-hidden"
       style={{ background: dark ? 'linear-gradient(135deg, #0f0a0a 0%, #1a0505 100%)' : '#f8f9fa' }}
     >
-      {/* Wipe panel — sweeps left→right then exits right→off */}
-      {showWipe && (
-        <motion.div
-          animate={wipeControls}
-          className="fixed inset-0 z-40 pointer-events-none flex items-center justify-center overflow-hidden"
-          style={{ background: 'linear-gradient(135deg, #8b0d12 0%, #b7131a 40%, #db322f 100%)' }}
-        >
-          {/* BilimAI logo centered on panel */}
-          <div className="flex flex-col items-center gap-3 select-none">
-            <div className="w-14 h-14 rounded-2xl bg-white/20 flex items-center justify-center">
-              <span className="material-symbols-outlined text-white text-3xl" style={{ fontVariationSettings: "'FILL' 1" }}>auto_stories</span>
-            </div>
-            <span className="text-white font-black text-2xl tracking-tight">BilimAI</span>
-          </div>
-        </motion.div>
-      )}
       {/* Blobs */}
       <motion.div
         animate={{ opacity: dark ? 0.25 : 0.1 }}
@@ -360,6 +332,6 @@ export default function LoginPage() {
           </div>
         </motion.div>
       </div>
-    </motion.main>
+    </main>
   )
 }
