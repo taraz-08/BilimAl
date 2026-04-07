@@ -26,6 +26,14 @@ export default function LoginPage() {
   const [groups, setGroups] = useState([])
   const [showPass, setShowPass] = useState(false)
   const [darkBg, setDarkBg] = useState(false)
+  const [ripple, setRipple] = useState(false)
+  const [nextDark, setNextDark] = useState(true)
+
+  const handleToggle = () => {
+    const next = !darkBg
+    setNextDark(next)
+    setRipple(true)
+  }
 
   useEffect(() => {
     groupsAPI.list().then(setGroups).catch(() => {})
@@ -76,10 +84,23 @@ export default function LoginPage() {
 
   return (
     <motion.main
-      animate={{ background: dark ? 'linear-gradient(135deg, #0f0a0a 0%, #1a0505 50%, #0f0a0a 100%)' : '#f8f9fa' }}
-      transition={{ duration: 0.6, ease: 'easeInOut' }}
       className="min-h-screen flex relative overflow-hidden"
+      style={{ background: dark ? 'linear-gradient(135deg, #0f0a0a 0%, #1a0505 50%, #0f0a0a 100%)' : '#f8f9fa' }}
     >
+      {/* Ripple overlay — circular reveal from top-right */}
+      {ripple && (
+        <motion.div
+          className="fixed inset-0 z-40 pointer-events-none"
+          style={{ background: nextDark ? 'linear-gradient(135deg, #0f0a0a 0%, #1a0505 100%)' : '#f8f9fa' }}
+          initial={{ clipPath: 'circle(0% at calc(100% - 2.5rem) 3.5rem)' }}
+          animate={{ clipPath: 'circle(200% at calc(100% - 2.5rem) 3.5rem)' }}
+          transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
+          onAnimationComplete={() => {
+            setDarkBg(nextDark)
+            setRipple(false)
+          }}
+        />
+      )}
       {/* Blobs */}
       <motion.div
         animate={{ opacity: dark ? 0.25 : 0.1 }}
@@ -96,7 +117,7 @@ export default function LoginPage() {
 
       {/* Toggle button — top right, icon only */}
       <motion.button
-        onClick={() => setDarkBg(p => !p)}
+        onClick={handleToggle}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         className="absolute top-5 right-5 z-50 w-10 h-10 rounded-xl flex items-center justify-center transition-colors"
