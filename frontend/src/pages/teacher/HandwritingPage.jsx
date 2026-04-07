@@ -173,50 +173,23 @@ export default function HandwritingPage() {
           </div>
 
           {/* Right — Result */}
-          <AnimatePresence mode="wait">
-            {loading && (
+          <AnimatePresence>
+            {result && (
               <motion.div
-                key="loading"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                className="flex flex-col items-center justify-center h-full gap-4 bg-surface-container-lowest rounded-3xl ghost-border p-12"
-              >
-                <div className="w-12 h-12 border-4 border-primary/20 border-t-primary rounded-full animate-spin" />
-                <p className="text-on-surface-variant text-sm font-medium">AI оқып жатыр...</p>
-              </motion.div>
-            )}
-
-            {result && !loading && (
-              <motion.div
-                key="result"
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0 }}
                 className="space-y-4"
               >
-                {/* ── Extracted text — top ── */}
-                <div className="bg-surface-container-lowest rounded-2xl ghost-border overflow-hidden">
-                  <div className="flex items-center gap-2 px-5 py-3 border-b border-outline-variant bg-surface-container-low">
-                    <span className="material-symbols-outlined text-primary text-[18px]" style={{ fontVariationSettings: "'FILL' 1" }}>text_snippet</span>
-                    <p className="label-section text-[10px]">АНЫҚТАЛҒАН МӘТІН</p>
-                  </div>
-                  <div className="p-5 max-h-72 overflow-y-auto">
-                    <p className="text-sm text-on-surface leading-relaxed whitespace-pre-wrap">
-                      {result.extracted_text || '—'}
-                    </p>
-                  </div>
-                </div>
-
-                {/* ── Score ── */}
-                <div className="bg-surface-container-lowest rounded-2xl p-5 ghost-border">
-                  <div className="flex items-center justify-between mb-3">
-                    <p className="label-section text-[10px]">AI БАҒАСЫ</p>
-                    <span className={`text-3xl font-black ${scoreColor}`}>
-                      {result.score} <span className="text-lg font-medium text-on-surface-variant">/ {result.max_points}</span>
+                {/* Score card */}
+                <div className={`rounded-3xl p-6 border-2 ${scoreBg}`}>
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="label-section text-[10px]">AI БАҒАСЫ</span>
+                    <span className={`text-4xl font-black ${scoreColor}`}>
+                      {result.score} / {result.max_points}
                     </span>
                   </div>
-                  <div className="w-full h-2 bg-surface-container-high rounded-full overflow-hidden">
+                  <div className="w-full h-2 bg-surface-container-lowest/60 rounded-full overflow-hidden">
                     <motion.div
                       initial={{ width: 0 }}
                       animate={{ width: `${scorePercent}%` }}
@@ -224,48 +197,59 @@ export default function HandwritingPage() {
                       className={`h-full rounded-full ${scorePercent >= 75 ? 'bg-green-500' : scorePercent >= 50 ? 'bg-amber-500' : 'bg-red-500'}`}
                     />
                   </div>
-                  <p className={`text-xs font-bold mt-1.5 ${scoreColor}`}>{scorePercent}%</p>
+                  <p className={`text-sm font-bold mt-2 ${scoreColor}`}>{scorePercent}%</p>
                 </div>
 
-                {/* ── Feedback ── */}
+                {/* Feedback */}
                 <div className="bg-surface-container-lowest rounded-2xl p-5 ghost-border">
-                  <p className="label-section text-[10px] mb-2">ПІКІР</p>
+                  <p className="label-section text-[10px] mb-3">ПІКІР</p>
                   <p className="text-sm text-on-surface leading-relaxed">{result.feedback}</p>
                 </div>
 
-                {/* ── Strengths ── */}
+                {/* Strengths */}
                 {result.strengths && (
-                  <div className="bg-green-50 rounded-2xl p-4 border border-green-200">
-                    <div className="flex items-center gap-2 mb-1.5">
-                      <span className="material-symbols-outlined text-green-600 text-[16px]" style={{ fontVariationSettings: "'FILL' 1" }}>thumb_up</span>
+                  <div className="bg-green-50 rounded-2xl p-5 border border-green-200">
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className="material-symbols-outlined text-green-600 text-sm" style={{ fontVariationSettings: "'FILL' 1" }}>thumb_up</span>
                       <p className="label-section text-[10px] text-green-700">КҮШТІ ЖАҚТАРЫ</p>
                     </div>
                     <p className="text-sm text-green-800">{result.strengths}</p>
                   </div>
                 )}
 
-                {/* ── Improvements ── */}
+                {/* Improvements */}
                 {result.improvements && (
-                  <div className="bg-amber-50 rounded-2xl p-4 border border-amber-200">
-                    <div className="flex items-center gap-2 mb-1.5">
-                      <span className="material-symbols-outlined text-amber-600 text-[16px]" style={{ fontVariationSettings: "'FILL' 1" }}>tips_and_updates</span>
+                  <div className="bg-amber-50 rounded-2xl p-5 border border-amber-200">
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className="material-symbols-outlined text-amber-600 text-sm" style={{ fontVariationSettings: "'FILL' 1" }}>tips_and_updates</span>
                       <p className="label-section text-[10px] text-amber-700">ЖАҚСАРТУ КЕРЕК</p>
                     </div>
                     <p className="text-sm text-amber-800">{result.improvements}</p>
                   </div>
                 )}
+
+                {/* Extracted text */}
+                <details className="bg-surface-container-lowest rounded-2xl ghost-border">
+                  <summary className="p-4 cursor-pointer label-section text-[10px] flex items-center gap-2">
+                    <span className="material-symbols-outlined text-sm">text_snippet</span>
+                    Анықталған мәтін (Vision API)
+                  </summary>
+                  <div className="px-5 pb-5">
+                    <p className="text-xs text-on-surface-variant whitespace-pre-wrap leading-relaxed font-mono bg-surface-container-low rounded-xl p-4">
+                      {result.extracted_text}
+                    </p>
+                  </div>
+                </details>
               </motion.div>
             )}
 
             {!result && !loading && (
               <motion.div
-                key="empty"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
                 className="hidden lg:flex flex-col items-center justify-center h-full text-center p-12 bg-surface-container-lowest rounded-3xl ghost-border"
               >
-                <span className="material-symbols-outlined text-5xl mb-3" style={{ color: 'var(--color-outline)', fontVariationSettings: "'FILL' 1" }}>
+                <span className="material-symbols-outlined text-6xl text-outline/40 mb-4" style={{ fontVariationSettings: "'FILL' 1" }}>
                   rate_review
                 </span>
                 <p className="text-on-surface-variant text-sm">
