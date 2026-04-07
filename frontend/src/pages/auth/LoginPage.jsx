@@ -170,36 +170,38 @@ export default function LoginPage() {
               <LangSwitcher />
             </div>
 
-            {/* Role selector */}
-            <div className="grid grid-cols-2 gap-3 mb-6">
-              {['student', 'teacher'].map((r) => (
-                <button
-                  key={r}
-                  type="button"
-                  onClick={() => setRole(r)}
-                  className={`flex items-center gap-3 p-4 rounded-2xl transition-all text-left border-2 ${
-                    role === r
-                      ? 'border-blue-500 bg-blue-50'
-                      : 'border-slate-200 bg-slate-50 hover:border-slate-300'
-                  }`}
-                >
-                  <div className={`w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 transition-colors ${
-                    role === r ? 'bg-blue-500' : 'bg-white border border-slate-200'
-                  }`}>
-                    <span className={`material-symbols-outlined text-[18px] ${role === r ? 'text-white' : 'text-slate-400'}`}
-                      style={{ fontVariationSettings: "'FILL' 1" }}>
-                      {r === 'student' ? 'school' : 'psychology'}
-                    </span>
-                  </div>
-                  <div>
-                    <p className={`text-sm font-bold ${role === r ? 'text-blue-700' : 'text-slate-700'}`}>{t(r)}</p>
-                    <p className="text-[10px] text-slate-400 uppercase tracking-wider mt-0.5">
-                      {r === 'student' ? 'Студент' : 'Оқытушы'}
-                    </p>
-                  </div>
-                </button>
-              ))}
-            </div>
+            {/* Role selector — тек тіркелу кезінде */}
+            {mode === 'register' && (
+              <div className="grid grid-cols-2 gap-3 mb-6">
+                {['student', 'teacher'].map((r) => (
+                  <button
+                    key={r}
+                    type="button"
+                    onClick={() => setRole(r)}
+                    className={`flex items-center gap-3 p-4 rounded-2xl transition-all text-left border-2 ${
+                      role === r
+                        ? 'border-blue-500 bg-blue-50'
+                        : 'border-slate-200 bg-slate-50 hover:border-slate-300'
+                    }`}
+                  >
+                    <div className={`w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 transition-colors ${
+                      role === r ? 'bg-blue-500' : 'bg-white border border-slate-200'
+                    }`}>
+                      <span className={`material-symbols-outlined text-[18px] ${role === r ? 'text-white' : 'text-slate-400'}`}
+                        style={{ fontVariationSettings: "'FILL' 1" }}>
+                        {r === 'student' ? 'school' : 'psychology'}
+                      </span>
+                    </div>
+                    <div>
+                      <p className={`text-sm font-bold ${role === r ? 'text-blue-700' : 'text-slate-700'}`}>{t(r)}</p>
+                      <p className="text-[10px] text-slate-400 uppercase tracking-wider mt-0.5">
+                        {r === 'student' ? 'Студент' : 'Оқытушы'}
+                      </p>
+                    </div>
+                  </button>
+                ))}
+              </div>
+            )}
 
             {/* Form */}
             <form onSubmit={handleSubmit} className="space-y-4">
