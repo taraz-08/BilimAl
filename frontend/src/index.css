@@ -124,7 +124,7 @@
 
   /* ── Fields ── */
   .field {
-    @apply w-full h-12 px-4 bg-surface-container-low border border-outline-variant/50
+    @apply w-full h-12 px-4 bg-surface-container-low border border-outline-variant
            rounded-xl transition-all outline-none text-on-surface text-sm;
   }
   .field:focus {
@@ -148,7 +148,7 @@
 
   .btn-secondary {
     @apply h-10 flex items-center justify-center gap-2
-           border border-outline-variant/60 rounded-xl text-sm font-semibold
+           border border-outline-variant rounded-xl text-sm font-semibold
            hover:bg-surface-container-low transition-all text-on-surface;
   }
 
