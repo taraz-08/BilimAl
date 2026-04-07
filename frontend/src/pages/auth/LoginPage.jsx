@@ -66,44 +66,36 @@ export default function LoginPage() {
   }
 
   return (
-    <main className="min-h-screen flex relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #0a0f1e 0%, #0f172a 50%, #0a1628 100%)' }}>
+    <main className="min-h-screen flex relative overflow-hidden bg-surface">
 
-      {/* Animated background blobs */}
-      <div className="blob w-96 h-96 top-[-8rem] left-[-4rem] opacity-30" style={{ background: 'radial-gradient(circle, #b7131a, transparent)' }} />
-      <div className="blob w-80 h-80 bottom-[-4rem] right-[30%] opacity-20" style={{ background: 'radial-gradient(circle, #c0191f, transparent)', animationDelay: '2s' }} />
-      <div className="blob w-64 h-64 top-[40%] right-[-2rem] opacity-20" style={{ background: 'radial-gradient(circle, #0ea5e9, transparent)', animationDelay: '4s' }} />
-
-      {/* Grid pattern overlay */}
-      <div className="absolute inset-0 opacity-[0.03]" style={{
-        backgroundImage: 'linear-gradient(rgba(255,255,255,0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.8) 1px, transparent 1px)',
-        backgroundSize: '48px 48px'
-      }} />
+      {/* Subtle blobs */}
+      <div className="blob w-96 h-96 top-[-6rem] left-[-4rem] opacity-10" style={{ background: 'radial-gradient(circle, #b7131a, transparent)' }} />
+      <div className="blob w-80 h-80 bottom-[-4rem] right-[35%] opacity-10" style={{ background: 'radial-gradient(circle, #db322f, transparent)', animationDelay: '2s' }} />
 
       {/* Left Panel */}
       <div className="hidden lg:flex flex-col justify-between w-[45%] p-12 relative z-10">
         {/* Logo */}
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #9b0f14, #db322f)' }}>
+          <div className="w-10 h-10 rounded-xl flex items-center justify-center tonal-gradient">
             <span className="material-symbols-outlined text-white text-[18px]" style={{ fontVariationSettings: "'FILL' 1" }}>auto_stories</span>
           </div>
-          <span className="text-white font-black text-xl tracking-tight">BilimAI</span>
+          <span className="font-black text-xl tracking-tight text-on-surface">BilimAI</span>
         </div>
 
         {/* Hero text */}
         <div className="space-y-8">
           <div className="space-y-4">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold tracking-wider text-red-300 border border-red-500/30 bg-red-500/10">
-              <span className="w-1.5 h-1.5 rounded-full bg-red-400 animate-pulse" />
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold tracking-wider"
+              style={{ color: '#b7131a', background: 'rgba(183,19,26,0.07)', border: '1px solid rgba(183,19,26,0.2)' }}>
+              <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
               ЖАСАНДЫ ИНТЕЛЛЕКТ ПЛАТФОРМАСЫ
             </div>
-            <h1 className="text-5xl xl:text-6xl font-black text-white leading-[1.05] tracking-tight">
+            <h1 className="text-5xl xl:text-6xl font-black text-on-surface leading-[1.05] tracking-tight">
               Білімің<br />
-              <span style={{ background: 'linear-gradient(135deg, #ff8983, #a78bfa)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-                болашағы
-              </span><br />
+              <span className="gradient-text">болашағы</span><br />
               бүгін.
             </h1>
-            <p className="text-slate-400 text-lg leading-relaxed max-w-sm">
+            <p className="text-on-surface-variant text-lg leading-relaxed max-w-sm">
               AI негізіндегі оқу платформасы — студент пен оқытушыны байланыстырады.
             </p>
           </div>
@@ -116,26 +108,22 @@ export default function LoginPage() {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.2 + i * 0.1 }}
-                className="flex items-center gap-4 p-4 rounded-2xl"
-                style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)' }}
+                className="flex items-center gap-4 p-4 rounded-2xl bg-surface-container-lowest ghost-border"
               >
                 <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
-                  style={{ background: 'rgba(183,19,26,0.25)', border: '1px solid rgba(183,19,26,0.3)' }}>
-                  <span className="material-symbols-outlined text-red-400 text-[18px]" style={{ fontVariationSettings: "'FILL' 1" }}>{f.icon}</span>
+                  style={{ background: 'rgba(183,19,26,0.08)' }}>
+                  <span className="material-symbols-outlined text-primary text-[18px]" style={{ fontVariationSettings: "'FILL' 1" }}>{f.icon}</span>
                 </div>
                 <div>
-                  <p className="text-white text-sm font-bold">{f.label}</p>
-                  <p className="text-slate-500 text-xs">{f.desc}</p>
+                  <p className="text-on-surface text-sm font-bold">{f.label}</p>
+                  <p className="text-on-surface-variant text-xs">{f.desc}</p>
                 </div>
               </motion.div>
             ))}
           </div>
         </div>
 
-        {/* Footer */}
-        <div className="flex items-center gap-6">
-          <p className="text-slate-600 text-xs">© 2026 BilimAI • Delta тобы</p>
-        </div>
+        <p className="text-on-surface-variant text-xs">© 2026 BilimAI • Delta тобы</p>
       </div>
 
       {/* Right Panel — Form */}
@@ -147,8 +135,8 @@ export default function LoginPage() {
           className="w-full max-w-md"
         >
           {/* Card */}
-          <div className="rounded-3xl p-8 md:p-10"
-            style={{ background: 'rgba(255,255,255,0.97)', boxShadow: '0 24px 64px rgba(0,0,0,0.4), 0 4px 16px rgba(0,0,0,0.2)' }}>
+          <div className="rounded-3xl p-8 md:p-10 bg-surface-container-lowest ghost-border"
+            style={{ boxShadow: '0 8px 40px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04)' }}>
 
             {/* Header */}
             <div className="flex justify-between items-start mb-8">
@@ -158,12 +146,12 @@ export default function LoginPage() {
                   <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #9b0f14, #db322f)' }}>
                     <span className="material-symbols-outlined text-white text-[14px]" style={{ fontVariationSettings: "'FILL' 1" }}>auto_stories</span>
                   </div>
-                  <span className="font-black text-gray-900">BilimAI</span>
+                  <span className="font-black text-on-surface">BilimAI</span>
                 </div>
-                <h2 className="text-2xl font-black text-gray-900 tracking-tight">
+                <h2 className="text-2xl font-black text-on-surface tracking-tight">
                   {mode === 'login' ? 'Қош келдіңіз' : 'Тіркелу'}
                 </h2>
-                <p className="text-slate-500 text-sm mt-1">
+                <p className="text-on-surface-variant text-sm mt-1">
                   {mode === 'login' ? 'Аккаунтыңызға кіріңіз' : 'Жаңа аккаунт жасаңыз'}
                 </p>
               </div>
@@ -181,20 +169,20 @@ export default function LoginPage() {
                     className={`flex items-center gap-3 p-4 rounded-2xl transition-all text-left border-2 ${
                       role === r
                         ? 'border-red-500 bg-red-50'
-                        : 'border-slate-200 bg-slate-50 hover:border-slate-300'
+                        : 'border-outline-variant bg-surface-container-low hover:border-outline-variant'
                     }`}
                   >
                     <div className={`w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 transition-colors ${
-                      role === r ? 'bg-red-500' : 'bg-white border border-slate-200'
+                      role === r ? 'bg-red-500' : 'bg-white border border-outline-variant'
                     }`}>
-                      <span className={`material-symbols-outlined text-[18px] ${role === r ? 'text-white' : 'text-slate-400'}`}
+                      <span className={`material-symbols-outlined text-[18px] ${role === r ? 'text-white' : 'text-on-surface-variant'}`}
                         style={{ fontVariationSettings: "'FILL' 1" }}>
                         {r === 'student' ? 'school' : 'psychology'}
                       </span>
                     </div>
                     <div>
-                      <p className={`text-sm font-bold ${role === r ? 'text-red-700' : 'text-slate-700'}`}>{t(r)}</p>
-                      <p className="text-[10px] text-slate-400 uppercase tracking-wider mt-0.5">
+                      <p className={`text-sm font-bold ${role === r ? 'text-red-700' : 'text-on-surface'}`}>{t(r)}</p>
+                      <p className="text-[10px] text-on-surface-variant uppercase tracking-wider mt-0.5">
                         {r === 'student' ? 'Студент' : 'Оқытушы'}
                       </p>
                     </div>
@@ -207,30 +195,30 @@ export default function LoginPage() {
             <form onSubmit={handleSubmit} className="space-y-4">
               {mode === 'register' && (
                 <div>
-                  <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5">{t('fullName')}</label>
+                  <label className="block text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-1.5">{t('fullName')}</label>
                   <input className="field" placeholder="Алибек Жаксыбеков"
                     value={form.full_name} onChange={set('full_name')} required />
                 </div>
               )}
 
               <div>
-                <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5">{t('email')}</label>
+                <label className="block text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-1.5">{t('email')}</label>
                 <div className="relative">
-                  <span className="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-slate-400 text-[18px]">mail</span>
+                  <span className="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-on-surface-variant text-[18px]">mail</span>
                   <input className="field pl-9" placeholder="email@university.edu" type="email"
                     value={form.email} onChange={set('email')} required />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5">{t('password')}</label>
+                <label className="block text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-1.5">{t('password')}</label>
                 <div className="relative">
-                  <span className="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-slate-400 text-[18px]">lock</span>
+                  <span className="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-on-surface-variant text-[18px]">lock</span>
                   <input className="field pl-9 pr-10" placeholder="••••••••"
                     type={showPass ? 'text' : 'password'}
                     value={form.password} onChange={set('password')} required minLength={6} />
                   <button type="button" onClick={() => setShowPass(p => !p)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600">
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-slate-600">
                     <span className="material-symbols-outlined text-[18px]">{showPass ? 'visibility_off' : 'visibility'}</span>
                   </button>
                 </div>
@@ -239,14 +227,14 @@ export default function LoginPage() {
               {mode === 'register' && role === 'student' && (
                 <>
                   <div>
-                    <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5">{t('specialization')}</label>
+                    <label className="block text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-1.5">{t('specialization')}</label>
                     <select className="field" value={form.specialization} onChange={set('specialization')}>
                       <option value="">{t('selectSpecialization')}</option>
                       {specializations.map(s => <option key={s} value={s}>{s}</option>)}
                     </select>
                   </div>
                   <div>
-                    <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5">{t('group')}</label>
+                    <label className="block text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-1.5">{t('group')}</label>
                     <select className="field" value={form.group_id} onChange={set('group_id')}>
                       <option value="">{t('selectGroup')}</option>
                       {filteredGroups.map(g => <option key={g.id} value={g.id}>{g.name} — {g.specialization}</option>)}
@@ -274,9 +262,9 @@ export default function LoginPage() {
                 </motion.button>
 
                 <div className="flex items-center gap-3">
-                  <div className="h-px flex-1 bg-slate-200" />
-                  <span className="text-xs text-slate-400 font-medium">{t('or')}</span>
-                  <div className="h-px flex-1 bg-slate-200" />
+                  <div className="h-px flex-1 bg-surface-container-high" />
+                  <span className="text-xs text-on-surface-variant font-medium">{t('or')}</span>
+                  <div className="h-px flex-1 bg-surface-container-high" />
                 </div>
 
                 <button
