@@ -43,7 +43,7 @@ export default function TopNav({ title }) {
         </button>
         {/* Avatar */}
         <div className="h-8 w-8 rounded-xl flex items-center justify-center text-white text-xs font-black ml-1"
-          style={{ background: 'linear-gradient(135deg, #1d4ed8, #7c3aed)' }}>
+          style={{ background: 'linear-gradient(135deg, #9b0f14, #c0191f)' }}>
           {initials}
         </div>
       </div>

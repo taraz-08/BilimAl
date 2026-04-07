@@ -25,7 +25,7 @@ function SkeletonCard({ h = 'h-32' }) {
   )
 }
 
-function StatPill({ icon, label, value, sub, color = '#2563eb' }) {
+function StatPill({ icon, label, value, sub, color = '#b7131a' }) {
   return (
     <div className="flex items-center gap-4 p-4 rounded-2xl bg-surface-container-lowest ghost-border">
       <div className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0"
@@ -100,12 +100,12 @@ export default function StudentDashboard() {
         {/* ── Hero header ── */}
         <header className="mb-8">
           <div className="rounded-3xl p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-6 overflow-hidden relative"
-            style={{ background: 'linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%)' }}>
+            style={{ background: 'linear-gradient(135deg, #1a0a0a 0%, #3d0f10 100%)' }}>
             {/* bg glow */}
             <div className="absolute top-0 right-0 w-64 h-64 rounded-full opacity-20 pointer-events-none"
-              style={{ background: 'radial-gradient(circle, #3b82f6, transparent)', filter: 'blur(40px)' }} />
+              style={{ background: 'radial-gradient(circle, #db322f, transparent)', filter: 'blur(40px)' }} />
             <div>
-              <p className="text-blue-400 text-[10px] uppercase tracking-[0.2em] font-bold mb-2">
+              <p className="text-red-300 text-[10px] uppercase tracking-[0.2em] font-bold mb-2">
                 {t('academicProgressIndex')}
               </p>
               <h1 className="text-3xl md:text-4xl font-black text-white leading-tight">
@@ -133,8 +133,8 @@ export default function StudentDashboard() {
             Array(4).fill(0).map((_, i) => <SkeletonCard key={i} h="h-20" />)
           ) : (
             <>
-              <StatPill icon="school" label={t('overallRanking')} value={myRank ? `#${myRank.rank}` : '—'} color="#2563eb" />
-              <StatPill icon="percent" label={t('avgScore')} value={avgScore != null ? `${avgScore}%` : '—'} color="#7c3aed" />
+              <StatPill icon="school" label={t('overallRanking')} value={myRank ? `#${myRank.rank}` : '—'} color="#b7131a" />
+              <StatPill icon="percent" label={t('avgScore')} value={avgScore != null ? `${avgScore}%` : '—'} color="#c0191f" />
               <StatPill icon="event_available" label="Қатысу" value={profile?.attendance_percent != null ? `${profile.attendance_percent}%` : '—'} color="#059669" />
               <StatPill icon="quiz" label={t('availableTests')} value={availableTests.filter(t => !t.already_submitted).length} sub={t('testsAvailable')} color="#d97706" />
             </>
@@ -183,7 +183,7 @@ export default function StudentDashboard() {
                     <Bar dataKey="score" radius={[6, 6, 0, 0]}>
                       {chartData.map((entry, i) => (
                         <Cell key={i}
-                          fill={entry.score >= 80 ? '#2563eb' : entry.score >= 60 ? '#d97706' : '#ef4444'}
+                          fill={entry.score >= 80 ? '#b7131a' : entry.score >= 60 ? '#d97706' : '#ef4444'}
                           opacity={i === chartData.length - 1 ? 1 : 0.5}
                         />
                       ))}
@@ -200,14 +200,14 @@ export default function StudentDashboard() {
             {/* AI Summary */}
             {prediction?.ai_summary && (
               <div className="flex gap-3 p-4 rounded-xl"
-                style={{ background: 'linear-gradient(135deg, rgba(37,99,235,0.08), rgba(124,58,237,0.06))', border: '1px solid rgba(37,99,235,0.15)' }}>
-                <span className="material-symbols-outlined text-blue-500 flex-shrink-0 mt-0.5"
+                style={{ background: 'linear-gradient(135deg, rgba(183,19,26,0.08), rgba(192,25,31,0.06))', border: '1px solid rgba(183,19,26,0.15)' }}>
+                <span className="material-symbols-outlined text-primary flex-shrink-0 mt-0.5"
                   style={{ fontVariationSettings: "'FILL' 1" }}>auto_awesome</span>
                 <p className="text-sm text-on-surface leading-relaxed">{prediction.ai_summary}</p>
               </div>
             )}
 
-            <div className="flex gap-8 pt-2 border-t border-outline-variant/30">
+            <div className="flex gap-8 pt-2 border-t border-outline-variant">
               <div>
                 <p className="label-section mb-1">{t('accuracy')}</p>
                 <p className="text-xl font-black text-on-surface">
@@ -229,8 +229,8 @@ export default function StudentDashboard() {
               style={{ boxShadow: '0 1px 3px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.04)' }}>
               <div className="flex items-center gap-2">
                 <div className="w-8 h-8 rounded-xl flex items-center justify-center"
-                  style={{ background: 'linear-gradient(135deg, rgba(37,99,235,0.15), rgba(124,58,237,0.1))' }}>
-                  <span className="material-symbols-outlined text-blue-500 text-[18px]"
+                  style={{ background: 'linear-gradient(135deg, rgba(183,19,26,0.15), rgba(192,25,31,0.1))' }}>
+                  <span className="material-symbols-outlined text-primary text-[18px]"
                     style={{ fontVariationSettings: "'FILL' 1" }}>psychology</span>
                 </div>
                 <h3 className="text-sm font-bold uppercase tracking-widest text-on-surface">{t('aiRecommendations')}</h3>
@@ -252,11 +252,11 @@ export default function StudentDashboard() {
                     className="p-3.5 rounded-xl flex gap-3"
                     style={{
                       background: 'var(--color-surface-container-low)',
-                      borderLeft: `3px solid ${i === 0 ? '#2563eb' : i === 1 ? '#7c3aed' : '#059669'}`,
+                      borderLeft: `3px solid ${i === 0 ? '#b7131a' : i === 1 ? '#c0191f' : '#059669'}`,
                     }}
                   >
                     <div className="w-6 h-6 rounded-full flex items-center justify-center text-[11px] font-black text-white flex-shrink-0 mt-0.5"
-                      style={{ background: i === 0 ? '#2563eb' : i === 1 ? '#7c3aed' : '#059669' }}>
+                      style={{ background: i === 0 ? '#b7131a' : i === 1 ? '#c0191f' : '#059669' }}>
                       {i + 1}
                     </div>
                     <div>
@@ -283,7 +283,7 @@ export default function StudentDashboard() {
               ) : grades.length > 0 ? grades.slice(0, 4).map((g, i) => {
                 const pct = Math.round((g.total_score / (g.max_score || 100)) * 100)
                 const letter = pct >= 90 ? 'A+' : pct >= 85 ? 'A' : pct >= 80 ? 'A-' : pct >= 75 ? 'B+' : pct >= 70 ? 'B' : 'C'
-                const barColor = pct >= 80 ? '#2563eb' : pct >= 60 ? '#d97706' : '#ef4444'
+                const barColor = pct >= 80 ? '#b7131a' : pct >= 60 ? '#d97706' : '#ef4444'
                 const textColor = pct >= 80 ? 'text-emerald-600' : pct >= 60 ? 'text-amber-600' : 'text-red-500'
                 return (
                   <motion.div
@@ -354,9 +354,9 @@ export default function StudentDashboard() {
                   >
                     <div className="flex items-start justify-between gap-2">
                       <div className="w-10 h-10 rounded-xl flex items-center justify-center"
-                        style={{ background: 'rgba(37,99,235,0.1)' }}>
+                        style={{ background: 'rgba(183,19,26,0.1)' }}>
                         <span className="material-symbols-outlined text-[20px]"
-                          style={{ color: '#2563eb', fontVariationSettings: "'FILL' 1" }}>quiz</span>
+                          style={{ color: '#b7131a', fontVariationSettings: "'FILL' 1" }}>quiz</span>
                       </div>
                       {test.already_submitted ? (
                         <span className="text-[10px] font-bold uppercase tracking-widest bg-emerald-100 text-emerald-700 px-2.5 py-1 rounded-full">
@@ -390,7 +390,7 @@ export default function StudentDashboard() {
                         whileTap={{ scale: 0.97 }}
                         onClick={() => navigate(`/student/test/${test.id}`)}
                         className="w-full py-3 text-white rounded-xl font-bold text-xs uppercase tracking-widest flex items-center justify-center gap-2"
-                        style={{ background: 'linear-gradient(135deg, #1d4ed8, #3b82f6)', boxShadow: '0 4px 12px rgba(37,99,235,0.3)' }}
+                        style={{ background: 'linear-gradient(135deg, #9b0f14, #db322f)', boxShadow: '0 4px 12px rgba(183,19,26,0.3)' }}
                       >
                         <span className="material-symbols-outlined text-sm">videocam</span>
                         {t('startTest')}

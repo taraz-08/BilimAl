@@ -18,7 +18,7 @@ function Avatar({ name }) {
     : '?'
   return (
     <div className="w-9 h-9 rounded-xl flex items-center justify-center text-white text-sm font-black flex-shrink-0"
-      style={{ background: 'linear-gradient(135deg, #1d4ed8, #7c3aed)' }}>
+      style={{ background: 'linear-gradient(135deg, #9b0f14, #c0191f)' }}>
       {initials}
     </div>
   )
@@ -64,7 +64,7 @@ export default function Sidebar() {
       <div className="p-5 border-b" style={{ borderColor: 'var(--color-sidebar-border)' }}>
         <div className="flex items-center gap-3">
           <div className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0"
-            style={{ background: 'linear-gradient(135deg, #1d4ed8, #3b82f6)' }}>
+            style={{ background: 'linear-gradient(135deg, #9b0f14, #db322f)' }}>
             <span className="material-symbols-outlined text-white text-[16px]" style={{ fontVariationSettings: "'FILL' 1" }}>
               auto_stories
             </span>

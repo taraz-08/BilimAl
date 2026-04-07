@@ -69,8 +69,8 @@ export default function LoginPage() {
     <main className="min-h-screen flex relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #0a0f1e 0%, #0f172a 50%, #0a1628 100%)' }}>
 
       {/* Animated background blobs */}
-      <div className="blob w-96 h-96 top-[-8rem] left-[-4rem] opacity-30" style={{ background: 'radial-gradient(circle, #2563eb, transparent)' }} />
-      <div className="blob w-80 h-80 bottom-[-4rem] right-[30%] opacity-20" style={{ background: 'radial-gradient(circle, #7c3aed, transparent)', animationDelay: '2s' }} />
+      <div className="blob w-96 h-96 top-[-8rem] left-[-4rem] opacity-30" style={{ background: 'radial-gradient(circle, #b7131a, transparent)' }} />
+      <div className="blob w-80 h-80 bottom-[-4rem] right-[30%] opacity-20" style={{ background: 'radial-gradient(circle, #c0191f, transparent)', animationDelay: '2s' }} />
       <div className="blob w-64 h-64 top-[40%] right-[-2rem] opacity-20" style={{ background: 'radial-gradient(circle, #0ea5e9, transparent)', animationDelay: '4s' }} />
 
       {/* Grid pattern overlay */}
@@ -83,7 +83,7 @@ export default function LoginPage() {
       <div className="hidden lg:flex flex-col justify-between w-[45%] p-12 relative z-10">
         {/* Logo */}
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #1d4ed8, #3b82f6)' }}>
+          <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #9b0f14, #db322f)' }}>
             <span className="material-symbols-outlined text-white text-[18px]" style={{ fontVariationSettings: "'FILL' 1" }}>auto_stories</span>
           </div>
           <span className="text-white font-black text-xl tracking-tight">BilimAI</span>
@@ -92,13 +92,13 @@ export default function LoginPage() {
         {/* Hero text */}
         <div className="space-y-8">
           <div className="space-y-4">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold tracking-wider text-blue-300 border border-blue-500/30 bg-blue-500/10">
-              <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold tracking-wider text-red-300 border border-red-500/30 bg-red-500/10">
+              <span className="w-1.5 h-1.5 rounded-full bg-red-400 animate-pulse" />
               ЖАСАНДЫ ИНТЕЛЛЕКТ ПЛАТФОРМАСЫ
             </div>
             <h1 className="text-5xl xl:text-6xl font-black text-white leading-[1.05] tracking-tight">
               Білімің<br />
-              <span style={{ background: 'linear-gradient(135deg, #60a5fa, #a78bfa)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+              <span style={{ background: 'linear-gradient(135deg, #ff8983, #a78bfa)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
                 болашағы
               </span><br />
               бүгін.
@@ -120,8 +120,8 @@ export default function LoginPage() {
                 style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)' }}
               >
                 <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
-                  style={{ background: 'rgba(37,99,235,0.25)', border: '1px solid rgba(37,99,235,0.3)' }}>
-                  <span className="material-symbols-outlined text-blue-400 text-[18px]" style={{ fontVariationSettings: "'FILL' 1" }}>{f.icon}</span>
+                  style={{ background: 'rgba(183,19,26,0.25)', border: '1px solid rgba(183,19,26,0.3)' }}>
+                  <span className="material-symbols-outlined text-red-400 text-[18px]" style={{ fontVariationSettings: "'FILL' 1" }}>{f.icon}</span>
                 </div>
                 <div>
                   <p className="text-white text-sm font-bold">{f.label}</p>
@@ -155,7 +155,7 @@ export default function LoginPage() {
               <div>
                 {/* Mobile logo */}
                 <div className="flex items-center gap-2 mb-4 lg:hidden">
-                  <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #1d4ed8, #3b82f6)' }}>
+                  <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #9b0f14, #db322f)' }}>
                     <span className="material-symbols-outlined text-white text-[14px]" style={{ fontVariationSettings: "'FILL' 1" }}>auto_stories</span>
                   </div>
                   <span className="font-black text-gray-900">BilimAI</span>
@@ -180,12 +180,12 @@ export default function LoginPage() {
                     onClick={() => setRole(r)}
                     className={`flex items-center gap-3 p-4 rounded-2xl transition-all text-left border-2 ${
                       role === r
-                        ? 'border-blue-500 bg-blue-50'
+                        ? 'border-red-500 bg-red-50'
                         : 'border-slate-200 bg-slate-50 hover:border-slate-300'
                     }`}
                   >
                     <div className={`w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 transition-colors ${
-                      role === r ? 'bg-blue-500' : 'bg-white border border-slate-200'
+                      role === r ? 'bg-red-500' : 'bg-white border border-slate-200'
                     }`}>
                       <span className={`material-symbols-outlined text-[18px] ${role === r ? 'text-white' : 'text-slate-400'}`}
                         style={{ fontVariationSettings: "'FILL' 1" }}>
@@ -193,7 +193,7 @@ export default function LoginPage() {
                       </span>
                     </div>
                     <div>
-                      <p className={`text-sm font-bold ${role === r ? 'text-blue-700' : 'text-slate-700'}`}>{t(r)}</p>
+                      <p className={`text-sm font-bold ${role === r ? 'text-red-700' : 'text-slate-700'}`}>{t(r)}</p>
                       <p className="text-[10px] text-slate-400 uppercase tracking-wider mt-0.5">
                         {r === 'student' ? 'Студент' : 'Оқытушы'}
                       </p>
@@ -282,7 +282,7 @@ export default function LoginPage() {
                 <button
                   type="button"
                   onClick={() => setMode(mode === 'login' ? 'register' : 'login')}
-                  className="w-full text-sm font-bold text-blue-600 hover:text-blue-700 py-2 hover:underline underline-offset-4 transition-colors"
+                  className="w-full text-sm font-bold text-red-600 hover:text-red-700 py-2 hover:underline underline-offset-4 transition-colors"
                 >
                   {mode === 'login' ? t('switchToRegister') : t('switchToLogin')}
                 </button>
