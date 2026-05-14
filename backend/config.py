@@ -8,6 +8,7 @@ class Settings(BaseSettings):
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 1440
     GOOGLE_API_KEY: Optional[str] = None
     VISION_API_KEY: Optional[str] = None
+    ALEMLLM_API_KEY: Optional[str] = "sk-U9D124ThkKBBNYc4688H2g"
     FRONTEND_URL: str = "http://localhost:5173"
 
     class Config:

@@ -15,8 +15,8 @@ def generate_recommendations(
     student_name: str = "",
     test_scores: List[float] = None,
 ) -> List[Dict]:
-    # Try Gemini first
-    if settings.GOOGLE_API_KEY:
+    # Try AlemLLM first
+    if settings.ALEMLLM_API_KEY:
         result = _gemini_recommendations(
             avg_score=avg_score,
             attendance=attendance,
@@ -35,8 +35,7 @@ def generate_recommendations(
 def _gemini_recommendations(avg_score, attendance, weak_subjects,
                              strong_subjects, student_name, test_scores) -> List[Dict]:
     try:
-        from google import genai
-        client = genai.Client(api_key=settings.GOOGLE_API_KEY)
+        from services.alemllm import generate_text
 
         weak_str   = ", ".join(weak_subjects[:5]) if weak_subjects else "жоқ"
         strong_str = ", ".join(strong_subjects[:5]) if strong_subjects else "жоқ"
@@ -64,8 +63,10 @@ JSON массиві форматында қайтарыңыз:
 ]
 Тек JSON массивін шығарыңыз."""
 
-        response = client.models.generate_content(model="gemini-2.5-flash", contents=prompt)
-        text = response.text.strip()
+        text = generate_text(prompt)
+        if not text:
+            return []
+        text = text.strip()
         if text.startswith("```"):
             text = text.split("```", 2)[1]
             if text.startswith("json"):

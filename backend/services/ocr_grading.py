@@ -32,11 +32,10 @@ def extract_text_from_image(image_bytes: bytes) -> str:
 
 def grade_extracted_text(text: str, topic: str, max_points: int = 10) -> dict:
     """Grade extracted handwritten text using Gemini."""
-    if not settings.GOOGLE_API_KEY:
-        raise RuntimeError("GOOGLE_API_KEY конфигурацияланмаған")
+    if not settings.ALEMLLM_API_KEY:
+        raise RuntimeError("ALEMLLM_API_KEY конфигурацияланмаған")
 
-    from google import genai
-    client = genai.Client(api_key=settings.GOOGLE_API_KEY)
+    from services.alemllm import generate_text
 
     prompt = f"""Сіз академиялық бағалаушысыз. Студенттің қолмен жазған шығармасын бағалаңыз.
 
@@ -63,8 +62,10 @@ JSON форматында жауап беріңіз:
 }}
 Тек JSON объектісін шығарыңыз."""
 
-    response = client.models.generate_content(model="gemini-2.5-flash", contents=prompt)
-    text_resp = response.text.strip()
+    text_resp = generate_text(prompt)
+    if not text_resp:
+        return {}
+    text_resp = text_resp.strip()
     if text_resp.startswith("```"):
         text_resp = text_resp.split("```")[1]
         if text_resp.startswith("json"):

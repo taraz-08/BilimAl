@@ -3,7 +3,7 @@ Google Gemini test question generator from topic text or extracted file content.
 Falls back to mock questions if GOOGLE_API_KEY is not set.
 """
 import json
-from google import genai
+from services.alemllm import generate_text
 from typing import List, Dict
 from config import settings
 
@@ -12,10 +12,8 @@ def generate_questions(topic: str, num_questions: int = 10, difficulty: str = "u
     """
     Returns a list of question dicts compatible with QuestionCreate schema.
     """
-    if not settings.GOOGLE_API_KEY:
+    if not settings.ALEMLLM_API_KEY:
         return _mock_questions(topic, num_questions)
-
-    client = genai.Client(api_key=settings.GOOGLE_API_KEY)
 
     prompt = f"""You are an academic test designer. Create {num_questions} exam questions about the following topic.
 Topic / Content: {topic[:3000]}
@@ -34,8 +32,8 @@ Respond with a JSON array. Each item must have:
 Only output the JSON array, no other text."""
 
     try:
-        response = client.models.generate_content(model="gemini-2.5-flash", contents=prompt)
-        text = response.text.strip()
+        text = generate_text(prompt)
+        text = text.strip()
         if text.startswith("```"):
             text = text.split("```")[1]
             if text.startswith("json"):

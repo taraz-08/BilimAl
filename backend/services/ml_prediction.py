@@ -61,9 +61,9 @@ def _gemini_summary(avg_score, attendance_percent, completion_rate,
     """Generate a short Kazakh AI analysis using Gemini."""
     try:
         from config import settings
-        if not settings.GOOGLE_API_KEY:
+        if not settings.ALEMLLM_API_KEY:
             return None
-        from google import genai
+        from services.alemllm import generate_text
 
         subjects_text = ""
         if subject_grades:
@@ -90,12 +90,8 @@ def _gemini_summary(avg_score, attendance_percent, completion_rate,
 
 Тек талдау мәтінін жазыңыз, басқа ештеңе жоқ."""
 
-        client = genai.Client(api_key=settings.GOOGLE_API_KEY)
-        response = client.models.generate_content(
-            model="gemini-2.5-flash",
-            contents=prompt,
-        )
-        return response.text.strip()
+        text = generate_text(prompt)
+        return text.strip() if text else None
     except Exception as e:
         print(f"[Prediction] Gemini error: {e}")
         return None

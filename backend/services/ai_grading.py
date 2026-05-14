@@ -3,7 +3,7 @@ Google Gemini powered written answer grading service.
 Falls back to a simple length-based mock if GOOGLE_API_KEY is not set.
 """
 import json
-from google import genai
+from services.alemllm import generate_text
 from config import settings
 from typing import Tuple
 
@@ -12,11 +12,9 @@ def grade_written_answer(question: str, answer: str, max_points: int = 10) -> Tu
     """
     Returns (score, feedback) for a student's written answer.
     """
-    if not settings.GOOGLE_API_KEY:
+    if not settings.ALEMLLM_API_KEY:
         score = min(max_points, max(1, len(answer) // 30))
         return float(score), "AI grading unavailable in demo mode. Score auto-estimated."
-
-    client = genai.Client(api_key=settings.GOOGLE_API_KEY)
 
     prompt = f"""Сіз академиялық бағалаушысыз. Студенттің жазба жауабын бағалаңыз.
 
@@ -38,10 +36,10 @@ JSON форматында жауап беріңіз (тек осы өрісте�
 }}
 Тек JSON объектісін шығарыңыз, басқа мәтін жоқ."""
 
-    response = client.models.generate_content(model="gemini-2.5-flash", contents=prompt)
+    text = generate_text(prompt)
 
     try:
-        text = response.text.strip()
+        text = text.strip()
         if text.startswith("```"):
             text = text.split("```")[1]
             if text.startswith("json"):
